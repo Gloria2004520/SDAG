@@ -1,0 +1,9 @@
+torch==2.5.1
+transformers==4.46.3
+tokenizers==0.20.3
+sentence-transformers==3.3.1
+sentencepiece==0.2.0
+numpy==1.26.4
+scikit-learn==1.5.2
+huggingface-hub==0.36.2
+accelerate==1.15.0
