@@ -130,6 +130,41 @@ all reusing the same 1,000 underlying NQ questions. This is not 8,000 distinct
 questions or a full reproduction. The remaining model/retriever combinations,
 attack-strategy comparisons and defense integrations still need execution.
 
+## Subsequent progress: Near attack selection
+
+After the deadline, the Near attack run completed 1,000 NQ questions for CARG
+and SDAG (2,000 records), passing full metric and sample verification.
+E5-large-v2 revision `f169b11e22de13617baa190a028a32f3493550b6` embeds four
+benign passages and the five attack candidates using the `passage: ` prefix,
+mean pooling and normalized vectors. The candidate with greatest dot product
+against the benign centroid is placed last in a five-passage prompt.
+**E5 is the attack-selection embedder here; it is not evidence that the
+underlying frozen documents were retrieved by E5.**
+
+| Near attack, total k=5 | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 17.0% | 44.5% | 10.2% |
+| SDAG | 16.7% | 30.3% | 9.9% |
+
+The ASR reduction is 14.2 percentage points (paired two-sided p=3.93e-25).
+The 0.3-point ACC decrease is not significant (p=0.7608).
+Artifacts: `results/qwen3vl8b_nq_e5_near_k5/`. Far generation is in progress.
+This remains a substitute-generator/frozen-retrieval experiment, not completion
+of paper Tables 2 or 16. Original Random candidate choices were independently
+checked against `random.Random(42).randrange(5)` and match all 1,000 questions.
+
+Prepare selections with:
+
+```bash
+python scripts/prepare_attack_pools.py --output ../prepared_inputs
+python scripts/prepare_nq_near_far_frozen.py --model-path /path/to/e5-large-v2 \
+  --revision f169b11e22de13617baa190a028a32f3493550b6
+```
+
+Use `scripts/run_cached_vl.py` with the generated Near/Far input file and
+`--conditions poisoned_carg,poisoned_sdag`, then pass the same conditions to
+`scripts/summarize_verified_run.py`.
+
 ## Reproduce the corrected total-k=5 substitute run
 
 Provide an authorized local Qwen3-VL-8B-Instruct snapshot for the revision above.
