@@ -308,3 +308,22 @@ ACC increased by 5.6 points (paired p=1.97e-6); ASR decreased by 28.6 points
 Cumulative completed output is now 20,000 records on 3,000 distinct questions.
 TriviaQA k=10 is running next. The original-model and remaining retrieval and
 defense configurations are still required to complete the paper experiments.
+
+## New full-corpus BM25 TriviaQA k=10 result
+
+TriviaQA k=10 completed 1,000 questions with nine benign passages and one attack,
+using the Qwen3-VL-8B substitute. All 2,000 records passed full provenance,
+sample and metric verification.
+
+| Method | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 56.3% | 37.6% | 47.8% |
+| SDAG | 64.6% | 14.0% | 55.2% |
+
+ACC increased by 8.3 points (paired p=4.32e-9); ASR decreased by 23.6 points
+(paired p=4.23e-52). Artifacts: `results/qwen3vl8b_bm25_triviaQA_k10/`.
+Cumulative completed output is now 22,000 records on 3,000 distinct questions.
+The audited-input NQ k=5 rerun is active. An E5 full-corpus retrieval controller
+is queued after this generation batch; its actual-model smoke must pass before
+the full retrieval starts. Queued work is not counted as completed results.
+The requested full paper reproduction remains unfinished.
