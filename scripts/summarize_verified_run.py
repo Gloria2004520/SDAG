@@ -47,10 +47,34 @@ for metric in ('acc','asr'):
     else:
         value=float(ttest_rel(sdag,baseline).pvalue)
     paired[metric]=dict(sdag_minus_carg=sum(differences)/len(ids),p_value_two_sided=value,n=len(ids))
+config=json.loads((directory/'config.json').read_text(encoding='utf-8'))
+limitations=['Qwen3-VL-8B substitutes for paper Qwen7B','Frozen retrieval provenance unverified','Does not complete requested Tables1,2,3,16']
+retrieval_evidence=None
+source=ROOT/config.get('data','data/m1/in_set_nq_1000_top5.jsonl')
+if source.parent==ROOT/'data/prepared/bm25_grid':
+    audit_dir=ROOT/'data/provenance/bm25_full_corpus'
+    audit_path=audit_dir/'verified_retrieval_report.json'
+    audit=json.loads(audit_path.read_text(encoding='utf-8'))
+    grid=json.loads((audit_dir/'grid_preparation_report.json').read_text(encoding='utf-8'))
+    actual_hash=hashlib.sha256(source.read_bytes()).hexdigest()
+    assert actual_hash==config['source_sha256']==grid['files'][source.stem]['sha256']
+    assert audit['state']=='validated_materialized' and audit['corpus_passages']==21015324
+    inputs=[json.loads(line) for line in source.read_text(encoding='utf-8').splitlines()]
+    audit_hash=hashlib.sha256(audit_path.read_bytes()).hexdigest()
+    assert all(x['verified_retrieval_report_sha256']==audit_hash for x in inputs)
+    by_id={x['query_id']:x for x in inputs[:args.expected]}
+    assert set(by_id)==set(groups['poisoned_carg'])
+    for row in rows:
+        original=by_id[row['query_id']]
+        assert row['ground_truth_answers']==original['ground_truth_answers'] and row['false_answer']==original['false_answer']
+    limitations.remove('Frozen retrieval provenance unverified')
+    retrieval_evidence=dict(status='validated_full_corpus_BM25',corpus_passages=21015324,
+        input_sha256=actual_hash,retrieval_report_sha256=audit_hash,
+        historical_config_note='The config setting field was inherited from an older frozen-NQ runner; this evidence identifies the actual input.')
 report=dict(status='verified_complete_substitute_run',paper_exact=False,
-            limitations=['Qwen3-VL-8B substitutes for paper Qwen7B','Frozen retrieval provenance unverified','Does not complete requested Tables1,2,3,16'],
+            limitations=limitations,retrieval_evidence=retrieval_evidence,
             samples_per_condition=args.expected,record_count=len(rows),metrics=summary,paired_tests=paired,
             predictions_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
-            config=json.loads((directory/'config.json').read_text()))
+            config=config)
 (directory/'verified_report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
 print(json.dumps(report,indent=2,allow_nan=False))

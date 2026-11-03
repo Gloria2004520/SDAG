@@ -232,3 +232,27 @@ retrieval, remaining generator/retriever/strategy cells, the complete Llama/E5
 multi-defense comparison and integrations, and final paper-table statistics.
 The DeepSeek per-document classifier cache is preparatory work and is not a
 faithful completed Discern&Answer baseline or generated-answer result.
+
+## New full-corpus BM25 HotpotQA result
+
+The first new retrieval-backed generation run completed 1,000 HotpotQA questions
+with one randomly selected attack at the end of a total-five-passage prompt.
+It uses the same Qwen3-VL-8B substitute generator. Full-corpus BM25 input hashes,
+sample IDs, targets and retrieval-audit linkage passed verification together
+with all 2,000 CARG/SDAG records.
+
+| Method | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 11.8% | 67.5% | 9.6% |
+| SDAG | 16.7% | 45.6% | 14.7% |
+
+ACC increased by 4.9 points (paired p=2.65e-5); ASR decreased by 21.9 points
+(paired p=4.88e-39). Artifacts: `results/qwen3vl8b_bm25_hotpotQA_k5/`.
+The config's inherited frozen-NQ description is stale; the verifier's explicit
+`retrieval_evidence` records this run's actual audited HotpotQA BM25 input.
+Earlier raw config files were retained for traceability.
+
+There are now 14,000 completed generation records across 1,000 NQ and 1,000
+HotpotQA questions (2,000 distinct questions). TriviaQA k=5 is running next;
+pending outputs are excluded. Original generator substitutions and incomplete
+paper tables remain material limitations.
