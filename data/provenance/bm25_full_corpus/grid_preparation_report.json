@@ -1,0 +1,32 @@
+{
+  "state": "prepared",
+  "files": {
+    "nq_k5": {
+      "rows": 1000,
+      "sha256": "9d372810ce09f8752402aa8f8fb7748dc6b126da16c69676d9efbaf24d1d3fbc"
+    },
+    "nq_k10": {
+      "rows": 1000,
+      "sha256": "2f94d745aef16f2c0d22ac7eff9af6af0878f52f766b922eceeeb3f97b4f54e8"
+    },
+    "hotpotQA_k5": {
+      "rows": 1000,
+      "sha256": "cd2598338edee371473b281b65bb72c4d73d18dbdb9df66cae29698e022d6f34"
+    },
+    "hotpotQA_k10": {
+      "rows": 1000,
+      "sha256": "de2bdbc260bb4576540c46f52f202f0d1ece52bbfadea9e8778ae964f9a42183"
+    },
+    "triviaQA_k5": {
+      "rows": 1000,
+      "sha256": "cbfc82085cefc98dbcff45fcd3278506fe9e2fdbf032395aa4361f23078bc642"
+    },
+    "triviaQA_k10": {
+      "rows": 1000,
+      "sha256": "24ab72b0c25900d01ac3969ebb30fe22853d1cadd752de864a075be0e2756e21"
+    }
+  },
+  "nq_k5_prompt_equivalent_queries": 999,
+  "reuse_nq_k5_existing_results": false,
+  "generator_substitution": true
+}

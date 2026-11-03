@@ -1,0 +1,21 @@
+{
+  "state": "validated_materialized",
+  "queries": 3000,
+  "k": 10,
+  "unique_passages": 29695,
+  "datasets": [
+    "nq",
+    "hotpotQA",
+    "triviaQA"
+  ],
+  "corpus_passages": 21015324,
+  "run_sha256": {
+    "nq": "0fd91e921e2c830984db4d12a97e01538a7e7adaa6210bb38421c1ef145c4486",
+    "hotpotQA": "0beee79d6e1746ff0f40ccb0a32b104174b1914e37d30b5e3c6af1fd5cebda73",
+    "triviaQA": "1e9e2737fd39b0a89cb4b8317998b2f4d2acd886b81fd9be60c3e2bba3b942d8"
+  },
+  "nq_frozen_top5_exact_rank_matches": 1000,
+  "nq_queries": 1000,
+  "corpus_sha256": "c39b020c855a2b5c25ffef3abe4a3b6f9b829ad7dbc14ec3d163d34d7c53ea8d",
+  "paper_generator_matrix_complete": false
+}

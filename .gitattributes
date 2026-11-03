@@ -1,3 +1,4 @@
 # Preserve result hashes on Windows and Linux checkouts.
 results/**/*.jsonl text eol=lf
 results/**/*.json text eol=lf
+data/provenance/bm25_full_corpus/*.run text eol=lf

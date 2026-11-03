@@ -1,0 +1,53 @@
+{
+  "status": "verified_complete_substitute_run",
+  "paper_exact": false,
+  "limitations": [
+    "Qwen3-VL-8B substitutes for paper Qwen7B",
+    "Frozen retrieval provenance unverified",
+    "Does not complete requested Tables1,2,3,16"
+  ],
+  "samples_per_condition": 1000,
+  "record_count": 2000,
+  "metrics": {
+    "poisoned_carg": {
+      "acc": 0.192,
+      "asr": 0.419,
+      "strict_em": 0.114
+    },
+    "poisoned_sdag": {
+      "acc": 0.204,
+      "asr": 0.251,
+      "strict_em": 0.124
+    }
+  },
+  "paired_tests": {
+    "acc": {
+      "sdag_minus_carg": 0.012,
+      "p_value_two_sided": 0.24399288744581943,
+      "n": 1000
+    },
+    "asr": {
+      "sdag_minus_carg": -0.168,
+      "p_value_two_sided": 3.0108759620354244e-29,
+      "n": 1000
+    }
+  },
+  "predictions_sha256": "72091c26efcfd9a7d79281ee32b5f97765608fb9626686130df798d8f7487a1b",
+  "config": {
+    "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "data": "data/prepared/nq_e5_far_total_k5.jsonl",
+    "conditions": "poisoned_carg,poisoned_sdag",
+    "temperature": 0.1,
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "limit": 1000,
+    "max_new_tokens": 500,
+    "output": "results/qwen3vl8b_nq_e5_far_k5",
+    "seed": 42,
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "python": "3.11.15",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "source_sha256": "07c93d771d1e925b2ed2db9f818576060899507571bf3029a4c13f8e9680c042",
+    "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mismatch_count": 1,
+  "mismatches": [
+    {
+      "query_id": "-4206190509773458361",
+      "differences": {
+        "false_answer": {
+          "old": "$500",
+          "rebuilt": "$500 "
+        }
+      }
+    }
+  ],
+  "reuse_previous_full_run": false
+}

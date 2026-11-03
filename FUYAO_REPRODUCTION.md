@@ -12,15 +12,17 @@ this document establishes completion of any full requested table.
   `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`.
 - This substitutes a vision-language model used with text-only inputs for the
   paper's Qwen-7B generator. It is not an exact model reproduction.
-- Input: the repository's frozen NQ data, first 1,000 questions. Retriever
-  provenance has not been verified. No full-corpus retrieval was rerun.
+- Input: the repository's frozen NQ data, first 1,000 questions. At run time
+  retrieval provenance was unverified. Subsequent full-corpus BM25 retrieval
+  reproduced all 1,000 ordered top-five passage-ID lists (see the later audit).
   A subsequent full-corpus audit found all 4,942 distinct retrieved passage IDs
   and texts exactly match the official DPR source under the original formatting
   rule: raw TSV title, newline, raw TSV body with boundary double quotes stripped.
   This preserves doubled TSV quotes and differs from proper CSV decoding.
   `data/provenance/frozen_nq_raw_format_audit.json` records the audit. Inputs and
   reported metrics were not changed. Corpus membership does not identify or
-  validate the original retrieval/ranking method.
+  validate the original retrieval/ranking method by itself; the subsequent
+  retrieval experiment supplies separate evidence for BM25 reproducibility.
 - Conditions: clean CARG, supplied poisoned CARG, supplied poisoned SDAG.
   These retain the supplied document sets, not a newly validated paper setting.
   All 1,000 inputs contain five clean passages and six poisoned-set passages
@@ -99,7 +101,7 @@ completed and passed the same 1,000-question/3,000-record verification.
 For this configuration, SDAG reduced ASR by 16.4 percentage points
 (paired two-sided p=1.94e-30). The 0.9-point ACC increase is **not statistically
 significant** (p=0.3561). Results are in `results/qwen3vl8b_nq_total_k5/`.
-The generator substitution and unverified retrieval provenance still apply;
+The generator substitution still applies; see the subsequent retrieval audit;
 correcting the document count does not establish paper-table completion.
 Both runs use the same 1,000 underlying questions. Small clean-condition metric
 differences reflect temperature sampling with different intervening generations;
@@ -148,7 +150,7 @@ underlying frozen documents were retrieved by E5.**
 
 The ASR reduction is 14.2 percentage points (paired two-sided p=3.93e-25).
 The 0.3-point ACC decrease is not significant (p=0.7608).
-Artifacts: `results/qwen3vl8b_nq_e5_near_k5/`. Far generation is in progress.
+Artifacts: `results/qwen3vl8b_nq_e5_near_k5/`. Far results are recorded below.
 This remains a substitute-generator/frozen-retrieval experiment, not completion
 of paper Tables 2 or 16. Original Random candidate choices were independently
 checked against `random.Random(42).randrange(5)` and match all 1,000 questions.
@@ -184,3 +186,49 @@ Use a new output directory for each run; existing prediction files are never
 overwritten. The preparation command similarly refuses an existing prepared file.
 The generation loop writes each answer immediately and only writes a summary
 after all three conditions finish. A progress count is not a final metric.
+
+## Subsequent progress: Far and full-corpus BM25
+
+Far attack selection completed another 2,000 verified records on the same
+1,000 NQ questions. It uses the minimum E5 dot product against the benign
+centroid; all other settings match Near. E5 selects attack candidates here.
+This does not establish E5 corpus retrieval.
+
+| Strategy | CARG ACC | SDAG ACC | CARG ASR | SDAG ASR |
+| --- | ---: | ---: | ---: | ---: |
+| Random, total k=5 | 17.6% | 18.5% | 43.6% | 27.2% |
+| Near, total k=5 | 17.0% | 16.7% | 44.5% | 30.3% |
+| Far, total k=5 | 19.2% | 20.4% | 41.9% | 25.1% |
+
+Far strict EM is 11.4% for CARG and 12.4% for SDAG. Its 16.8-point ASR
+reduction has paired two-sided p=3.01e-29; the 1.2-point ACC increase is not
+significant (p=0.2440). Artifacts: `results/qwen3vl8b_nq_e5_far_k5/`.
+The five completed runs now contain **12,000 generation records**, all using
+the same 1,000 underlying NQ questions. This remains a partial reproduction
+with a substituted generator, not completed paper Tables 1, 2, 3 or 16.
+
+The official DPR Wikipedia corpus was independently downloaded, checked and
+indexed: 21,015,324 passages, source gzip SHA256
+`c39b020c855a2b5c25ffef3abe4a3b6f9b829ad7dbc14ec3d163d34d7c53ea8d`.
+Anserini 2.3.0 Java CLI (Lucene 10.4) built the complete index and retrieved
+top ten passages for each of 1,000 NQ, HotpotQA and TriviaQA questions.
+All 30,000 ranked hits passed count, rank, score and corpus-membership checks.
+All 1,000 frozen NQ ordered top-five ID lists match the rebuilt BM25 lists.
+This verifies reproducibility with this BM25 setup; it does not prove which
+retriever originally produced the frozen files. Historical run reports retain
+their original pre-audit limitations rather than being silently rewritten.
+
+Ranked passage IDs/scores, SHA256 hashes, and the retrieval verification report
+are in `data/provenance/bm25_full_corpus/`. The full corpus, model weights and
+large index are not committed. See that directory's README for engine settings.
+The new six-configuration, three-dataset BM25 generation batch has started
+with HotpotQA k=5. These pending generations are not counted as results above.
+The NQ k=5 input audit found 999/1,000 exact record matches; one target answer
+has trailing whitespace (`$500` vs `$500 `), so the queue conservatively reruns
+NQ k=5 rather than reusing the earlier complete run.
+
+Still required: original paper generators, full E5 and Contriever corpus
+retrieval, remaining generator/retriever/strategy cells, the complete Llama/E5
+multi-defense comparison and integrations, and final paper-table statistics.
+The DeepSeek per-document classifier cache is preparatory work and is not a
+faithful completed Discern&Answer baseline or generated-answer result.
