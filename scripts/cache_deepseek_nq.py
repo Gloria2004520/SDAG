@@ -58,16 +58,20 @@ with output.open('a') as f, concurrent.futures.ThreadPoolExecutor(max_workers=4)
     for start in range(0,len(items),16):
         futures={pool.submit(classify,item):item[0] for item in items[start:start+16]}
         systemic=False
+        batch_failed=0
         for future in concurrent.futures.as_completed(futures):
             try:
                 result=future.result()
                 f.write(json.dumps(result)+'\n');f.flush();completed+=1
             except Exception as error:
                 failed+=1
+                batch_failed+=1
                 print(json.dumps(dict(failed_cache_key=futures[future],error=str(error))),flush=True)
                 if str(error) in ('HTTP:401','HTTP:402','HTTP:403','HTTP:400'):
                     systemic=True
         print(json.dumps(dict(completed=completed,failed=failed,total=len(jobs))),flush=True)
         if systemic:
             raise RuntimeError('Non-retryable API response; retained all successful labels; inspect log')
+        if batch_failed >= 8:
+            raise RuntimeError('API circuit breaker: at least half of batch failed; keep cache and retry after service recovery')
 print(json.dumps(dict(state='complete',added=completed)),flush=True)

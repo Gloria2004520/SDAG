@@ -78,7 +78,23 @@ For poisoned SDAG versus poisoned CARG, ACC increased by 2.3 percentage points
 Raw records, configuration, runtime summary and verified report are in
 `results/qwen3vl8b_nq_substitute_v2/`.
 
-A separate run correcting the poisoned set to five total passages is underway.
+A separate run correcting the poisoned set to five total passages has also
+completed and passed the same 1,000-question/3,000-record verification.
+
+| Total-k=5 condition | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| Clean CARG | 35.1% | 1.7% | 22.2% |
+| Poisoned CARG | 17.6% | 43.6% | 10.9% |
+| Poisoned SDAG | 18.5% | 27.2% | 11.3% |
+
+For this configuration, SDAG reduced ASR by 16.4 percentage points
+(paired two-sided p=1.94e-30). The 0.9-point ACC increase is **not statistically
+significant** (p=0.3561). Results are in `results/qwen3vl8b_nq_total_k5/`.
+The generator substitution and unverified retrieval provenance still apply;
+correcting the document count does not establish paper-table completion.
+Both runs use the same 1,000 underlying questions. Small clean-condition metric
+differences reflect temperature sampling with different intervening generations;
+do not interpret them as an independent dataset comparison.
 
 ## Reproduce the corrected total-k=5 substitute run
 
