@@ -256,3 +256,21 @@ There are now 14,000 completed generation records across 1,000 NQ and 1,000
 HotpotQA questions (2,000 distinct questions). TriviaQA k=5 is running next;
 pending outputs are excluded. Original generator substitutions and incomplete
 paper tables remain material limitations.
+
+## New full-corpus BM25 TriviaQA result
+
+TriviaQA k=5 completed 1,000 questions with the same single-attack protocol
+and Qwen3-VL-8B substitute. The 2,000 records passed sample, input provenance,
+metric and paired-test verification.
+
+| Method | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 46.9% | 46.6% | 39.0% |
+| SDAG | 54.5% | 25.4% | 47.0% |
+
+ACC increased by 7.6 points (paired p=6.32e-8); ASR decreased by 21.2 points
+(paired p=1.37e-39). Artifacts: `results/qwen3vl8b_bm25_triviaQA_k5/`.
+There are now 16,000 completed generation records across 3,000 distinct
+questions: 1,000 each from NQ, HotpotQA and TriviaQA. This is a substitute-model
+partial result. NQ k=10 is now running; full requested paper tables remain
+unfinished and pending generations are excluded from these totals.
