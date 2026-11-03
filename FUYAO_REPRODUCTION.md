@@ -49,8 +49,10 @@ API credentials are runtime-only and are not included in the repository.
 ## Remaining dependencies and experiments
 
 - Authorized, pinned Llama-8B, paper Qwen-7B and Mistral-7B weights.
-- Full Wikipedia December 2018 passage corpus and matching E5/Contriever/BM25
-  retrieval artifacts, with top-5/top-10 provenance verified.
+- Matching E5/Contriever/BM25 retrieval artifacts, with top-5/top-10 provenance
+  verified. The official Wikipedia December 2018 corpus has now been downloaded
+  and validated: 21,015,324 passages, gzip integrity, source MD5 and SHA256.
+  Its metadata is in `data/provenance/wiki_dpr_corpus.json`; indices are not built.
 - Formal attack selections, prompt positions and total retrieved-set sizes.
 - Original baseline implementations and hyperparameters, including RAGDefender.
 - All missing dataset/model/retriever/attack/defense combinations, statistical
@@ -95,6 +97,31 @@ correcting the document count does not establish paper-table completion.
 Both runs use the same 1,000 underlying questions. Small clean-condition metric
 differences reflect temperature sampling with different intervening generations;
 do not interpret them as an independent dataset comparison.
+
+## Two-adversarial-document preliminary results
+
+The substitute model also completed 1,000 NQ questions for each of CARG and SDAG
+with three benign and two adversarial passages (five total). Two candidates were
+sampled without replacement from each supplied five-document pool with seed 42,
+and all five prompt positions were shuffled. Each question retains one shared
+attacker target answer. The 2,000 unique records passed full verification.
+
+| Two-document attack, total k=5 | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 12.8% | 50.5% | 7.5% |
+| SDAG | 11.2% | 46.4% | 6.8% |
+
+SDAG reduced ASR by 4.1 percentage points (paired two-sided p=0.000491).
+ACC decreased by 1.6 points; this difference is not statistically significant
+(p=0.09891). These are substitute-generator/frozen-retrieval results, not the
+Llama/E5 defense comparison in paper Table 3. No RAGDefender or D&A integration
+is included in this run. Artifacts: `results/qwen3vl8b_nq_two_attacks_k5/`.
+
+At the user's 18:30 deadline, the complete requested Tables 1, 2, 3 and 16 remain
+unfinished. Three preliminary runs contain 8,000 generation records in total,
+all reusing the same 1,000 underlying NQ questions. This is not 8,000 distinct
+questions or a full reproduction. The remaining model/retriever combinations,
+attack-strategy comparisons and defense integrations still need execution.
 
 ## Reproduce the corrected total-k=5 substitute run
 

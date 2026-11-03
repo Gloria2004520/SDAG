@@ -74,12 +74,16 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--model', default='Qwen/Qwen2.5-1.5B-Instruct')
     p.add_argument('--data', default='data/m1/in_set_nq_1000_top5.jsonl')
+    p.add_argument('--conditions', default='clean_carg,poisoned_carg,poisoned_sdag')
     p.add_argument('--temperature', type=float, default=0.1)
     p.add_argument('--revision', default='989aa7980e4cf806f80c7fef2b1adb7bc71aa306')
     p.add_argument('--limit', type=int, default=100)
     p.add_argument('--max-new-tokens', type=int, default=500)
     p.add_argument('--output', default='results/basic_gpu')
     args = p.parse_args()
+    requested = args.conditions.split(',')
+    if not requested or len(requested)!=len(set(requested)) or not set(requested)<=set(('clean_carg','poisoned_carg','poisoned_sdag')):
+        p.error('Invalid conditions')
     if args.limit <= 0 or args.max_new_tokens <= 0:
         p.error('limit and max-new-tokens must be positive')
     assert torch.cuda.is_available(), 'CUDA required; no silent CPU fallback'
@@ -107,6 +111,8 @@ def main():
                 ('clean_carg', row['clean_documents'], False),
                 ('poisoned_carg', row['poisoned_documents'], False),
                 ('poisoned_sdag', row['poisoned_documents'], True)]:
+                if condition not in requested:
+                    continue
                 ids, mask = encode(tokenizer, row['question'], docs, isolated)
                 answer = generate(model, tokenizer, ids, mask, args.max_new_tokens, args.temperature)
                 result = dict(query_id=row['query_id'], condition=condition, answer=answer,
@@ -120,7 +126,7 @@ def main():
                 results.append(result)
                 print(len(results), row['query_id'], condition, answer, flush=True)
     summary = {'seconds': time.time()-started, 'peak_gpu_bytes': torch.cuda.max_memory_allocated(), 'conditions': {}}
-    for condition in ('clean_carg', 'poisoned_carg', 'poisoned_sdag'):
+    for condition in requested:
         group = [r for r in results if r['condition']==condition]
         summary['conditions'][condition] = dict(n=len(group), **{key: sum(r[key] for r in group)/len(group) for key in ('acc','asr','strict_em')})
     (output/'summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')

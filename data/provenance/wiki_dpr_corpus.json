@@ -1,0 +1,10 @@
+{
+  "status": "verified",
+  "source": "https://dl.fbaipublicfiles.com/dpr/wikipedia_split/psgs_w100.tsv.gz",
+  "wikipedia_dump": "2018-12-20",
+  "passages": 21015324,
+  "bytes": 4694541059,
+  "md5": "612fe66e0b6b41ee28f806140226c563",
+  "sha256": "c39b020c855a2b5c25ffef3abe4a3b6f9b829ad7dbc14ec3d163d34d7c53ea8d",
+  "retrieval_indices_built": false
+}
