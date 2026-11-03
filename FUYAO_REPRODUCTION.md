@@ -14,6 +14,13 @@ this document establishes completion of any full requested table.
   paper's Qwen-7B generator. It is not an exact model reproduction.
 - Input: the repository's frozen NQ data, first 1,000 questions. Retriever
   provenance has not been verified. No full-corpus retrieval was rerun.
+  A subsequent full-corpus audit found all 4,942 distinct retrieved passage IDs
+  and texts exactly match the official DPR source under the original formatting
+  rule: raw TSV title, newline, raw TSV body with boundary double quotes stripped.
+  This preserves doubled TSV quotes and differs from proper CSV decoding.
+  `data/provenance/frozen_nq_raw_format_audit.json` records the audit. Inputs and
+  reported metrics were not changed. Corpus membership does not identify or
+  validate the original retrieval/ranking method.
 - Conditions: clean CARG, supplied poisoned CARG, supplied poisoned SDAG.
   These retain the supplied document sets, not a newly validated paper setting.
   All 1,000 inputs contain five clean passages and six poisoned-set passages

@@ -1,0 +1,10 @@
+{
+  "expected_unique_ids": 4942,
+  "found_ids": 4942,
+  "raw_tsv_format_exact_matches": 4942,
+  "unmatched_ids": [],
+  "formatting_rule": "raw_title + newline + raw_text.strip(double_quote)",
+  "caveat": "This preserves doubled CSV quotes and removes boundary quotes; it is not equivalent to proper CSV decoding.",
+  "input_data_modified": false,
+  "retriever_identity_verified": false
+}
