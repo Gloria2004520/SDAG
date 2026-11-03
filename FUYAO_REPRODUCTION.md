@@ -291,3 +291,20 @@ ACC increased by 3.5 points (paired p=0.002369); ASR decreased by 20.8 points
 The cumulative total is now 18,000 verified generation records on the same
 3,000 distinct questions across the three datasets. HotpotQA k=10 is running.
 These partial substitute-model results do not complete the requested tables.
+
+## New full-corpus BM25 HotpotQA k=10 result
+
+HotpotQA k=10 completed the same 1,000 questions with nine benign passages and
+one attack, using Qwen3-VL-8B as the substitute generator. All 2,000 records
+passed input-provenance, sample, metric and paired-test verification.
+
+| Method | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 14.7% | 63.6% | 12.4% |
+| SDAG | 20.3% | 35.0% | 16.0% |
+
+ACC increased by 5.6 points (paired p=1.97e-6); ASR decreased by 28.6 points
+(paired p=1.60e-60). Artifacts: `results/qwen3vl8b_bm25_hotpotQA_k10/`.
+Cumulative completed output is now 20,000 records on 3,000 distinct questions.
+TriviaQA k=10 is running next. The original-model and remaining retrieval and
+defense configurations are still required to complete the paper experiments.
