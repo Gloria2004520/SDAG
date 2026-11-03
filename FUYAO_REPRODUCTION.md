@@ -327,3 +327,44 @@ The audited-input NQ k=5 rerun is active. An E5 full-corpus retrieval controller
 is queued after this generation batch; its actual-model smoke must pass before
 the full retrieval starts. Queued work is not counted as completed results.
 The requested full paper reproduction remains unfinished.
+
+## Full BM25 substitute grid completed; E5 retrieval started
+
+The independently rebuilt-input NQ k=5 rerun completed 1,000 questions and
+2,000 verified records. All six BM25 configurations (three datasets, k=5/10)
+are now complete for the Qwen3-VL-8B substitute generator.
+
+| NQ k=5 rerun | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 17.4% | 43.5% | 10.9% |
+| SDAG | 18.6% | 27.0% | 11.4% |
+
+The 1.2-point ACC increase is not significant (paired p=0.2160). The 16.5-point
+ASR reduction has paired p=5.87e-31. Artifacts: `results/qwen3vl8b_bm25_nq_k5/`.
+Small differences from the earlier frozen-input run reflect temperature sampling
+and the separately audited input record, not independent test questions.
+There are 24,000 completed generation records on 3,000 distinct questions.
+This total includes historical preliminary configurations and the conservative
+NQ rerun; it must not be treated as 24,000 different questions or full-paper
+coverage. The new BM25 grid itself contains 12,000 records.
+
+Full-corpus E5 retrieval has now started for the 3,000 questions, after a real
+GPU smoke on three queries and 64 corpus passages passed an independent
+exhaustive-ranking check. At the first saved checkpoints, 16,384 of 21,015,324
+passages were processed at about 199 passages/second. This is ongoing work,
+not completed retrieval or a completed paper-table result.
+
+`scripts/stream_e5_retrieval.py` records source/model hashes, runtime versions,
+FP32 embeddings, disabled TF32, E5 prefixes and maximum length 512. It saves
+embeddings and an atomic top-ten checkpoint every 4,096 passages. Resume
+requires the same parameters. With this clone at `$ROOT/repo` and the pinned
+model at `$ROOT/models/e5-large-v2`, the smoke and full commands are:
+
+```bash
+python scripts/stream_e5_retrieval.py --root "$ROOT" --output "$ROOT/e5_retrieval_smoke" --query-limit 3 --limit 64 --batch-size 8
+python scripts/stream_e5_retrieval.py --root "$ROOT" --output "$ROOT/e5_full_retrieval" --batch-size 32
+```
+
+Full E5 retrieval, Contriever retrieval, original paper generators, and complete
+RAGDefender/D&A defense comparisons remain outstanding. DeepSeek replaces GPT
+only where explicitly stated; no completed GPT-equivalent baseline is claimed.
