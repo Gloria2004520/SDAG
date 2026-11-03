@@ -1,0 +1,101 @@
+# Fuyao SDAG reproduction status
+
+Requested scope: paper Tables 1, 2, 3 and 16, including all datasets,
+generators, retrievers and settings in those tables.
+
+**The complete paper reproduction is not finished.** No preliminary run in
+this document establishes completion of any full requested table.
+
+## Current preliminary run
+
+- Model: cached Qwen3-VL-8B-Instruct, revision
+  `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`.
+- This substitutes a vision-language model used with text-only inputs for the
+  paper's Qwen-7B generator. It is not an exact model reproduction.
+- Input: the repository's frozen NQ data, first 1,000 questions. Retriever
+  provenance has not been verified. No full-corpus retrieval was rerun.
+- Conditions: clean CARG, supplied poisoned CARG, supplied poisoned SDAG.
+  These retain the supplied document sets, not a newly validated paper setting.
+  All 1,000 inputs contain five clean passages and six poisoned-set passages
+  (five benign plus one adversarial). The poisoned run must not be labeled
+  paper `k=5`, which requires five total passages including the adversary.
+- BF16, eager attention, temperature 0.1, top-p 1.0, seed 42,
+  maximum 500 generated tokens.
+- Runtime: Fuyao NVIDIA RTX PRO 5000 72GB, PyTorch 2.8.0+cu128,
+  Transformers 4.57.1.
+
+The initial adapter omitted incremental `cache_position`, causing Qwen3-VL
+decode position IDs to restart at zero. Those outputs are invalid and excluded.
+Only `qwen3vl8b_nq_substitute_v2` may be considered after verification.
+
+## Verification and metrics
+
+`scripts/summarize_verified_run.py` requires a completed run and checks unique
+question/condition keys, identical sets of 1,000 questions, and recomputed metrics.
+ACC and ASR use the existing normalized substring matcher; strict EM is reported
+separately. A two-sided paired t-test compares poisoned SDAG and CARG.
+Known answer-format differences such as `22-Nov` versus `November 2022` are
+preserved and can cause lexical ASR undercounting.
+
+## DeepSeek classifier preparation
+
+`scripts/cache_deepseek_nq.py` creates content-addressed classifier labels from
+existing NQ documents using the repository's classifier prompt and DeepSeek Flash.
+This is a user-authorized GPT replacement, not the original GPT baseline.
+The original Discern-and-Answer prompt/method still requires alignment before
+claiming a faithful baseline reproduction. Labels alone are not final QA results.
+API credentials are runtime-only and are not included in the repository.
+
+## Remaining dependencies and experiments
+
+- Authorized, pinned Llama-8B, paper Qwen-7B and Mistral-7B weights.
+- Full Wikipedia December 2018 passage corpus and matching E5/Contriever/BM25
+  retrieval artifacts, with top-5/top-10 provenance verified.
+- Formal attack selections, prompt positions and total retrieved-set sizes.
+- Original baseline implementations and hyperparameters, including RAGDefender.
+- All missing dataset/model/retriever/attack/defense combinations, statistical
+  comparisons, and verified upload of final artifacts.
+
+The 222 planned configurations are a deduplicated planning matrix, not results.
+No paper table values are copied into generated outputs.
+
+## Verified preliminary results (2026-11-03)
+
+The corrected v2 run completed 1,000 NQ questions in each condition, producing
+3,000 unique records. Recomputed metrics and hashes passed verification.
+This run uses five clean passages versus six poisoned-set passages and the
+substitute Qwen3-VL model; it is not a paper-table reproduction.
+
+| Condition | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| Clean CARG | 35.2% | 1.6% | 22.2% |
+| Poisoned CARG | 19.3% | 42.7% | 11.6% |
+| Poisoned SDAG | 21.6% | 24.6% | 13.3% |
+
+For poisoned SDAG versus poisoned CARG, ACC increased by 2.3 percentage points
+(paired two-sided t-test p=0.02073) and ASR decreased by 18.1 percentage points
+(p=4.42e-35). These findings apply to this preliminary configuration only.
+Raw records, configuration, runtime summary and verified report are in
+`results/qwen3vl8b_nq_substitute_v2/`.
+
+A separate run correcting the poisoned set to five total passages is underway.
+
+## Reproduce the corrected total-k=5 substitute run
+
+Provide an authorized local Qwen3-VL-8B-Instruct snapshot for the revision above.
+The observed environment versions are in `requirements-fuyao-observed.txt`.
+Use a separate environment and a CUDA-compatible PyTorch build.
+
+```bash
+python scripts/prepare_total_k5.py
+python scripts/run_cached_vl.py --model /path/to/qwen3-vl-snapshot \
+  --revision 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b \
+  --data data/prepared/nq_total_k5_single.jsonl --limit 1000 \
+  --temperature 0.1 --max-new-tokens 500 --output results/qwen3vl8b_nq_total_k5
+python scripts/summarize_verified_run.py results/qwen3vl8b_nq_total_k5
+```
+
+Use a new output directory for each run; existing prediction files are never
+overwritten. The preparation command similarly refuses an existing prepared file.
+The generation loop writes each answer immediately and only writes a summary
+after all three conditions finish. A progress count is not a final metric.

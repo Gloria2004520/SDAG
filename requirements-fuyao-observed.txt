@@ -1,0 +1,12 @@
+# Observed Fuyao environment. CUDA build imported as torch 2.8.0+cu128.
+# Use a separate environment; do not overwrite a shared training installation.
+torch==2.8.0
+transformers==4.57.1
+tokenizers==0.22.2
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.8.0
+huggingface-hub==0.36.2
+sentence-transformers==3.3.1
+accelerate==1.13.0
+safetensors==0.8.0rc0
