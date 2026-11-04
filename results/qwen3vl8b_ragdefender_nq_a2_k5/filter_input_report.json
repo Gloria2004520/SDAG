@@ -1,0 +1,22 @@
+{
+  "state": "verified_filtered_input",
+  "config": "nq_a2_k5",
+  "defense": "ragdefender",
+  "questions": 1000,
+  "input_sha256": "60ee86ed6ecaf0715c9ebec2978ac829609a537304f241c73d0d343d4cd434b2",
+  "canonical_source": {
+    "path": "repo/data/prepared/nq_two_attacks_total_k5.jsonl",
+    "sha256": "0250615d16808664737495d1fe7e48df00dad1db2e16b5c6b679b0e4dc90262e"
+  },
+  "decisions_sha256": "62ccbc4aebb9f7cf9ee3dea7f024c07a765dc478192b832577d2d0121b8da67f",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 2764,
+  "removed_documents": 2236,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": [
+    "BGE-small substitutes original Stella embedding model",
+    "Version0.2 Stage2fix used; concentration code OR/threshold/result-flip differs paper equations; code-as-published baseline, not exact equation replication"
+  ],
+  "canonical_result": "results/qwen3vl8b_nq_two_attacks_k5"
+}
