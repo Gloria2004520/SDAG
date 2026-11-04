@@ -8,7 +8,7 @@
 | 实验1：三数据集、k5/10、单污染、CARG/SDAG | **6/6配置完成并上传** | 直接复用 |
 | 实验4：NQ1000、k5、Random/Near/Far | **3/3策略有完整输出并上传** | 复用历史输入版本，不重跑 |
 | 实验5：污染数量、CARG/SDAG | **15/15配置完成并上传** | 此项已完成，直接复用 |
-| 实验5：RAGDefender、D&A及各自SDAG组合 | **9/30配置完成并上传** | 正在运行 `ragdefender_hotpotQA_a3_k10`；见[适配差异](BASELINE_ADAPTATIONS.md) |
+| 实验5：RAGDefender、D&A及各自SDAG组合 | **10/30配置完成并上传** | 正在运行 `joint_da_nq_a1_k10`；见[适配差异](BASELINE_ADAPTATIONS.md) |
 | 检索器对比、原论文三生成器 | **已取消/允许替代** | 不再作为完成要求 |
 
 ## 实验5：CARG/SDAG的15个配置
@@ -34,6 +34,7 @@
 | ragdefender适配 | hotpotQA | (1,10) | 6.7/64.1 | 9.1/43.5 | 0 | [结果](results/qwen3vl8b_ragdefender_hotpotQA_a1_k10/verified_report.json) |
 | ragdefender适配 | hotpotQA | (2,5) | 17.9/35.2 | 16.1/30.8 | 0 | [结果](results/qwen3vl8b_ragdefender_hotpotQA_a2_k5/verified_report.json) |
 | ragdefender适配 | hotpotQA | (2,10) | 9.3/56.3 | 7.6/47.5 | 0 | [结果](results/qwen3vl8b_ragdefender_hotpotQA_a2_k10/verified_report.json) |
+| ragdefender适配 | hotpotQA | (3,10) | 22.1/25.9 | 18.2/23.3 | 0 | [结果](results/qwen3vl8b_ragdefender_hotpotQA_a3_k10/verified_report.json) |
 
 ## 已完成配置的结果
 
