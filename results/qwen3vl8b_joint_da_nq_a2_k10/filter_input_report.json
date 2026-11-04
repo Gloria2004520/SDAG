@@ -1,0 +1,19 @@
+{
+  "state": "verified_filtered_input",
+  "config": "nq_a2_k10",
+  "defense": "joint_da",
+  "questions": 1000,
+  "input_sha256": "f32269aef4310951403a8bad770146c48bbd5f39a072c24255c6d4d3c555f39a",
+  "canonical_source": {
+    "path": "repo/data/prepared/bm25_multiattack/nq_a2_k10.jsonl",
+    "sha256": "95b31697ce218cd2833265186657661f14a5291515a9517ac7779d9e16c67542"
+  },
+  "decisions_sha256": "1cadd83a5611daf0a1257348c52d33853caa1e176b1e3c3ffd7f2b44aa79b6c1",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 8191,
+  "removed_documents": 1809,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": "D&A-inspired joint filter: original fewshot/instruction plus explicit JSON classification-only override; DeepSeek filter then Qwen answer; joint answer omitted. Cache shared by CARG/SDAG. Not exact original joint D&A.",
+  "canonical_result": "results/qwen3vl8b_bm25_nq_a2_k10"
+}
