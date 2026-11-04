@@ -1,0 +1,370 @@
+{
+  "policy": "Reuse canonical answer only when question, ordered stripped document texts, mask mode and model/settings are unchanged; generate changed prompts only",
+  "source": {
+    "canonical_result": "results/qwen3vl8b_bm25_nq_k5",
+    "predictions_sha256": "b58d689bf4f2ec9c48eb3503b6232de1ec5bfa3609681ff5ce44727ae9393797"
+  },
+  "reused_records": 90,
+  "reused_keys": [
+    {
+      "query_id": "7882691903232616365",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "7882691903232616365",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "512270438779129035",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "512270438779129035",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-4649146182478016322",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-4649146182478016322",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-9078912801783990252",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-9078912801783990252",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-6159174402926036720",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-6159174402926036720",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5839008083552937599",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5839008083552937599",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-3039669966148395365",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-3039669966148395365",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "1947255455163337403",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "1947255455163337403",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-2549769621272056360",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-2549769621272056360",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2885278237105070353",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2885278237105070353",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-5448353169627005671",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-5448353169627005671",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "9199587263422732891",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "9199587263422732891",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "114733641269906426",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "114733641269906426",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "3022939638183417538",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "3022939638183417538",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "1361387107747167157",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "1361387107747167157",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-9077495306870424234",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-9077495306870424234",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-346866783760651662",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-346866783760651662",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2198538934964547889",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2198538934964547889",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-79356518927071838",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-79356518927071838",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2781354757702216858",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2781354757702216858",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-1145193137828819774",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-1145193137828819774",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "7742806606709612020",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "7742806606709612020",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "8004211080214154493",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "8004211080214154493",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2370031936195519627",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2370031936195519627",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "682243000439863277",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "682243000439863277",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-6020718793311054865",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-6020718793311054865",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2985591975335305853",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2985591975335305853",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-4092499579855624350",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-4092499579855624350",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-342939340847959246",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-342939340847959246",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "2816383496294347631",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "2816383496294347631",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-7828774753633774412",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-7828774753633774412",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-4601136200073872325",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-4601136200073872325",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "6825646691617297520",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "6825646691617297520",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "3982411297731961591",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "3982411297731961591",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-1832461906521344120",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-1832461906521344120",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5686056094774499898",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5686056094774499898",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-5957270386941120779",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-5957270386941120779",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5978571415914479065",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5978571415914479065",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-8408640804522114136",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-8408640804522114136",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "1560261279486353160",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "1560261279486353160",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-8825841420882619284",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-8825841420882619284",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "626648103677918397",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "626648103677918397",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-2622854017829301835",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-2622854017829301835",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "-1996951438961136762",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "-1996951438961136762",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "1547060614805522730",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "1547060614805522730",
+      "condition": "poisoned_sdag"
+    }
+  ]
+}
