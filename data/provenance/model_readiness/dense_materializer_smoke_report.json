@@ -1,0 +1,15 @@
+{
+  "state": "validated_materialized_subset_smoke",
+  "retriever": "e5-large-v2",
+  "model_revision": "f169b11e22de13617baa190a028a32f3493550b6",
+  "input_report_sha256": "f7f09f9728cd807aafae7df9749e0fe93aea7fb6a29ae0901b534cfd65d2b082",
+  "run_sha256": "41b76ad7e92fc428043dd5e974f28a8076ada137b1a49632166424782aa02d05",
+  "datasets": {
+    "nq": {
+      "rows": 3,
+      "sha256": "49a21ef49eb11345032eedaf18d8335085d3a4095a3be9519df989d593f146fa"
+    }
+  },
+  "unique_passages": 22,
+  "paper_table_complete": false
+}

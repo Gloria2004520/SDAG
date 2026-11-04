@@ -1,0 +1,16 @@
+{
+  "paper_url": "https://arxiv.org/html/2602.04711v3",
+  "paper_version": "v3, 26 August 2026",
+  "official_repository": "https://github.com/sagie-dekel/Sparse-Document-Attention-RAG",
+  "verified_on": "2026-11-04",
+  "paper_generator_description": "Section 5.1 identifies instruct-tuned Llama-8B, Qwen-7B and Mistral-7B, temperature 0.1.",
+  "qwen_reference": "Yang et al. (2024), Qwen2 technical report, arXiv:2407.10671",
+  "local_original_config": "src/pipeline/config.py specifies meta-llama/Llama-3.1-8B-Instruct; no exact Qwen model identifier found in the local original source/config search.",
+  "available_qwen_model": "Qwen/Qwen2.5-7B-Instruct",
+  "available_qwen_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "inference": "The Qwen2 report citation suggests the Qwen2 family, but does not establish an exact repository, revision or whether the authors used Qwen2.5.",
+  "paper_alignment_verified": false,
+  "required_disclosure": "Qwen2.5-7B results must remain an explicitly identified model variant until author code/config or another primary source establishes exact alignment.",
+  "new_model_download_started": false,
+  "completed_generation_records_added": 0
+}

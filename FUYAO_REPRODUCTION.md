@@ -61,7 +61,9 @@ API credentials are runtime-only and are not included in the repository.
 - Matching E5/Contriever/BM25 retrieval artifacts, with top-5/top-10 provenance
   verified. The official Wikipedia December 2018 corpus has now been downloaded
   and validated: 21,015,324 passages, gzip integrity, source MD5 and SHA256.
-  Its metadata is in `data/provenance/wiki_dpr_corpus.json`; indices are not built.
+  Its metadata is in `data/provenance/wiki_dpr_corpus.json`. Full BM25 retrieval
+  is complete (see the results below); E5 exhaustive retrieval is in progress
+  and Contriever retrieval has not started.
 - Formal attack selections, prompt positions and total retrieved-set sizes.
 - Original baseline implementations and hyperparameters, including RAGDefender.
 - All missing dataset/model/retriever/attack/defense combinations, statistical
@@ -69,6 +71,38 @@ API credentials are runtime-only and are not included in the repository.
 
 The 222 planned configurations are a deduplicated planning matrix, not results.
 No paper table values are copied into generated outputs.
+
+## Model and downstream preparation (2026-11-04)
+
+Qwen/Qwen2.5-7B-Instruct revision
+`a09a35458c702b33eeacc393d103063234e8bc28` is now present on Fuyao.
+All four weight shards (15,231,271,888 bytes) passed remote SHA-256 verification.
+CPU-only checks verified all 339 tensor entries, BF16 storage offsets, embedding
+dimensions, tokenizer and chat template. These checks did not load the model
+weights or perform inference; GPU generation validation remains pending while
+E5 occupies the shared GPU lock. No Qwen2.5 generation results are reported.
+Reports are in `data/provenance/model_readiness/`; model weights are excluded.
+To verify another download of this revision, copy the published
+`qwen7b_download_manifest.json` into the model directory as `weights_manifest.json`,
+then run `python scripts/verify_qwen_weights.py --model-dir MODEL_DIR` followed by
+`python scripts/check_qwen_structure.py --model-dir MODEL_DIR` with GPU visibility
+disabled. The second command requires the observed Transformers environment.
+
+Paper Section 5.1 calls the model Qwen-7B and cites the Qwen2 technical report.
+That citation does not establish an exact model repository or revision, and the
+available original configuration names only Llama-3.1-8B-Instruct. Consequently,
+Qwen2.5 alignment remains unverified and any future run must disclose its exact
+model variant. See [paper v3](https://arxiv.org/html/2602.04711v3) and
+`generator_alignment_audit.json` in the readiness directory.
+
+`scripts/materialize_dense_retrieval.py` supports pinned E5 and Contriever
+profiles. It requires a completed retrieval report, matching parameter/run
+hashes, all 21,015,324 passages and 3,000 queries before creating full inputs.
+It validates top-ten ranks, ties, corpus hash, model revision, prefixes and
+normalization. Its explicitly enabled E5 subset check materialized three queries
+and 22 distinct passages; the default rejection of subset-as-full input passed.
+Contriever materialization remains untested until its retrieval smoke completes.
+This preparation adds zero completed generation records.
 
 ## Verified preliminary results (2026-11-03)
 
