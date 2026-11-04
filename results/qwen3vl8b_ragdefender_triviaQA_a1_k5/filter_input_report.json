@@ -1,0 +1,22 @@
+{
+  "state": "verified_filtered_input",
+  "config": "triviaQA_a1_k5",
+  "defense": "ragdefender",
+  "questions": 1000,
+  "input_sha256": "4096e80a6c15bf49e59536ceb6cea94713d013a1a377b104ef89ab4eab365a6e",
+  "canonical_source": {
+    "path": "repo/data/prepared/bm25_grid/triviaQA_k5.jsonl",
+    "sha256": "cbfc82085cefc98dbcff45fcd3278506fe9e2fdbf032395aa4361f23078bc642"
+  },
+  "decisions_sha256": "f41f147ebd154d09d608f184c7ce11fd8e044dc14278c6e4640ba09465eee003",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 3099,
+  "removed_documents": 1901,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": [
+    "BGE-small substitutes original Stella embedding model",
+    "Version0.2 Stage2fix used; concentration code OR/threshold/result-flip differs paper equations; code-as-published baseline, not exact equation replication"
+  ],
+  "canonical_result": "results/qwen3vl8b_bm25_triviaQA_k5"
+}
