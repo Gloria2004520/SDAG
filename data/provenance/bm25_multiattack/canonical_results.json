@@ -1,0 +1,16 @@
+{
+  "policy": "Reuse completed logical experiment cells. Random candidate/position realization changes alone do not create a new required cell. Never schedule a rerun solely to change retrieval provenance metadata.",
+  "nq_a2_k5": {
+    "canonical_result": "results/qwen3vl8b_nq_two_attacks_k5",
+    "canonical_input": "data/prepared/nq_two_attacks_total_k5.jsonl",
+    "unplanned_replicate": "results/qwen3vl8b_bm25_nq_a2_k5",
+    "replicate_adds_coverage": false,
+    "decision": "Use canonical input for additional defenses so paired comparisons share exactly the same passages and positions. Preserve replicate raw outputs for audit only."
+  },
+  "remaining_new_multiattack_cells": [
+    "hotpotQA_a2_k5", "triviaQA_a2_k5", "nq_a2_k10",
+    "hotpotQA_a2_k10", "triviaQA_a2_k10", "nq_a3_k10",
+    "hotpotQA_a3_k10", "triviaQA_a3_k10"
+  ],
+  "single_attack_policy": "Reuse all six completed BM25 dataset/k5/k10 CARG/SDAG cells. Add only missing defense conditions, not CARG/SDAG reruns."
+}

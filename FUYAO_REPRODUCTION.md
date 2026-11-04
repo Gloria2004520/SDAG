@@ -25,7 +25,20 @@ A two-question generation smoke passed verification and the full CARG/SDAG
 batch is running sequentially. Pending outputs and smoke are excluded from the
 published QA records. Other defense baselines remain incomplete.
 
-## New fixed-BM25 NQ result: two poisons, five total passages
+## Unplanned repeat of the existing NQ dual-attack configuration
+
+**Correction after duplicate audit:** This is the same logical configuration as
+the earlier `qwen3vl8b_nq_two_attacks_k5` experiment, not a newly covered cell.
+All 1,000 questions, answer/target pairs and benign passage sets match. The new
+script changed the random-number streams: poison text sets match for 90 queries,
+poison positions for 87, and complete ordered prompts for zero. These are changed
+random realizations, not a new requested experimental factor. This rerun was
+unnecessary and must not be counted as added experiment coverage.
+
+Reuse the earlier verified dual-attack result as canonical. Preserve the rerun
+below as an unplanned replicate for audit only. Additional defense baselines for
+this cell must use the canonical original inputs for paired comparisons. Exact
+overlap counts and canonical mappings are in `data/provenance/bm25_multiattack/`.
 
 The first new multi-poison configuration completed all 1,000 NQ questions,
 with three existing BM25 benign hits and two distinct poison candidates at
@@ -42,8 +55,9 @@ by 1.2 points (p=0.1516, not significant). Raw outputs, configuration, summary
 and verified report are in `results/qwen3vl8b_bm25_nq_a2_k5/`. These results use
 the current BM25 input assembly and differ from the earlier frozen-NQ two-poison
 run; the earlier raw outputs remain historical and are not substituted here.
-The cumulative published total is **26,000 generation records on 3,000 distinct
-questions**. The other eight multi-poison configurations and additional defense
+The cumulative raw archive contains **26,000 generation records on 3,000 distinct
+questions**, including this 2,000-record repeat; it adds zero independent cells.
+The other eight multi-poison configurations and additional defense
 baselines remain incomplete; this does not complete the revised experiment scope.
 
 **Superseded scope, earlier on 2026-11-04:** The user approved existing-model substitution

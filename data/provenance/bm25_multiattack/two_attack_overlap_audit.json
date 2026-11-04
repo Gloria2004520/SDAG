@@ -1,0 +1,33 @@
+{
+  "questions": 1000,
+  "counts": {
+    "same_question": 1000,
+    "same_answers_target": 1000,
+    "same_ordered_benign": 182,
+    "same_benign_text_set": 1000,
+    "same_poison_text_set": 90,
+    "same_poison_positions": 87,
+    "same_ordered_poisoned_prompt": 0
+  },
+  "logical_configuration_duplicate": true,
+  "shared_configuration": {
+    "dataset": "nq",
+    "generator_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "n_adv": 2,
+    "total_k": 5,
+    "conditions": [
+      "poisoned_carg",
+      "poisoned_sdag"
+    ],
+    "temperature": 0.1,
+    "seed": 42
+  },
+  "cause": "Historical generator uses one RNG for selection+shuffle; rerun uses independent seed42 streams, changing realization, not experimental factor",
+  "canonical_results": "qwen3vl8b_nq_two_attacks_k5",
+  "replicate_results": "qwen3vl8b_bm25_nq_a2_k5",
+  "decision": "Reuse historical verified dual-attack results for coverage; retain rerun as unplanned replicate, exclude from additional independent-cell count",
+  "source_sha256": [
+    "0250615d16808664737495d1fe7e48df00dad1db2e16b5c6b679b0e4dc90262e",
+    "a3d2b92f6c39430997434620e6b752ee73d91e7ead28aa0cf4d234327534a813"
+  ]
+}
