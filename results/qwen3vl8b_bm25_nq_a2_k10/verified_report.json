@@ -1,0 +1,60 @@
+{
+  "status": "verified_complete_substitute_run",
+  "paper_exact": false,
+  "limitations": [
+    "Qwen3-VL-8B substitutes for paper Qwen7B",
+    "Does not complete requested Tables1,2,3,16"
+  ],
+  "retrieval_evidence": {
+    "status": "validated_full_corpus_BM25",
+    "corpus_passages": 21015324,
+    "input_sha256": "95b31697ce218cd2833265186657661f14a5291515a9517ac7779d9e16c67542",
+    "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+    "historical_config_note": "The config setting field was inherited from an older frozen-NQ runner; this evidence identifies the actual input."
+  },
+  "defense_evidence": null,
+  "samples_per_condition": 1000,
+  "record_count": 2000,
+  "metrics": {
+    "poisoned_carg": {
+      "acc": 0.172,
+      "asr": 0.456,
+      "strict_em": 0.095
+    },
+    "poisoned_sdag": {
+      "acc": 0.178,
+      "asr": 0.345,
+      "strict_em": 0.111
+    }
+  },
+  "paired_tests": {
+    "acc": {
+      "sdag_minus_carg": 0.006,
+      "p_value_two_sided": 0.5447189912406685,
+      "n": 1000
+    },
+    "asr": {
+      "sdag_minus_carg": -0.111,
+      "p_value_two_sided": 1.0796782430553238e-16,
+      "n": 1000
+    }
+  },
+  "predictions_sha256": "f792806ca30afeaf8fe4b4c02f873167910f534d77b0fe7f1323aae91e1afac3",
+  "config": {
+    "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "data": "data/prepared/bm25_multiattack/nq_a2_k10.jsonl",
+    "conditions": "poisoned_carg,poisoned_sdag",
+    "temperature": 0.1,
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "limit": 1000,
+    "max_new_tokens": 500,
+    "output": "results/qwen3vl8b_bm25_nq_a2_k10",
+    "seed": 42,
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "python": "3.11.15",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "source_sha256": "95b31697ce218cd2833265186657661f14a5291515a9517ac7779d9e16c67542",
+    "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+  }
+}

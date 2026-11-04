@@ -50,7 +50,24 @@ for metric in ('acc','asr'):
 config=json.loads((directory/'config.json').read_text(encoding='utf-8'))
 limitations=['Qwen3-VL-8B substitutes for paper Qwen7B','Frozen retrieval provenance unverified','Does not complete requested Tables1,2,3,16']
 retrieval_evidence=None
+defense_evidence=None
 source=ROOT/config.get('data','data/m1/in_set_nq_1000_top5.jsonl')
+if source.parent.parent==ROOT/'data/prepared/filtered':
+    fp=source.with_suffix('.report.json');defense_evidence=json.loads(fp.read_text())
+    assert defense_evidence['state']=='verified_filtered_input' and defense_evidence['questions']==1000
+    assert hashlib.sha256(source.read_bytes()).hexdigest()==config['source_sha256']==defense_evidence['input_sha256']
+    labels=source.with_suffix('.decisions.jsonl')
+    assert hashlib.sha256(labels.read_bytes()).hexdigest()==defense_evidence['decisions_sha256']
+    inputs=[json.loads(x) for x in source.read_text().splitlines()];by_id={x['query_id']:x for x in inputs[:args.expected]}
+    assert len(by_id)==args.expected and set(by_id)==set(groups['poisoned_carg'])
+    for row in rows:
+        original=by_id[row['query_id']]
+        assert row['ground_truth_answers']==original['ground_truth_answers'] and row['false_answer']==original['false_answer']
+        assert row['attack_position']==original['attack_position']
+    limitations.remove('Frozen retrieval provenance unverified')
+    limitations.append('Defense embedding/API/prompt adaptations disclosed in defense_evidence; not exact baseline replication')
+    retrieval_evidence=dict(status='reused_canonical_BM25_inputs',canonical_source=defense_evidence['canonical_source'],
+        retrieval_report_sha256=defense_evidence['retrieval_report_sha256'])
 if source.parent in (ROOT/'data/prepared/bm25_grid',ROOT/'data/prepared/bm25_multiattack'):
     audit_dir=ROOT/'data/provenance/bm25_full_corpus'
     audit_path=audit_dir/'verified_retrieval_report.json'
@@ -74,6 +91,7 @@ if source.parent in (ROOT/'data/prepared/bm25_grid',ROOT/'data/prepared/bm25_mul
         historical_config_note='The config setting field was inherited from an older frozen-NQ runner; this evidence identifies the actual input.')
 report=dict(status='verified_complete_substitute_run',paper_exact=False,
             limitations=limitations,retrieval_evidence=retrieval_evidence,
+            defense_evidence=defense_evidence,
             samples_per_condition=args.expected,record_count=len(rows),metrics=summary,paired_tests=paired,
             predictions_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
             config=config)
