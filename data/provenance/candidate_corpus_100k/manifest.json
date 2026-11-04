@@ -1,0 +1,21 @@
+{
+  "state": "validated_shared_candidate_corpus",
+  "passages": 100000,
+  "source_corpus_passages": 21015324,
+  "source_corpus_sha256": "c39b020c855a2b5c25ffef3abe4a3b6f9b829ad7dbc14ec3d163d34d7c53ea8d",
+  "selection": "Union of full-corpus BM25 top10 for all 3000 evaluation queries; seeded random unique DPR IDs fill to 100000",
+  "bm25_pooled_passages": 29695,
+  "random_fill_passages": 70305,
+  "seed": 42,
+  "limitation": "Query-informed BM25 candidate pool; favors BM25 coverage. Dense rankings are exhaustive only within this shared pool, not full Wikipedia.",
+  "bm25_source_sha256": {
+    "nq": "0fd91e921e2c830984db4d12a97e01538a7e7adaa6210bb38421c1ef145c4486",
+    "hotpotQA": "0beee79d6e1746ff0f40ccb0a32b104174b1914e37d30b5e3c6af1fd5cebda73",
+    "triviaQA": "1e9e2737fd39b0a89cb4b8317998b2f4d2acd886b81fd9be60c3e2bba3b942d8"
+  },
+  "ids_sha256": "17108f6eef65375c72ef633dcc4212d203fa892fe874573ebefdbda5d7675e00",
+  "passages_sha256": "8b4f1e15fb4715d5ba5882ce48c6c90ab2612bed0daa0ffe185d87b66147fa0b",
+  "seconds": 107.8860719203949,
+  "generated_answers": 0,
+  "paper_table_complete": false
+}

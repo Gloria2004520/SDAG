@@ -17,7 +17,20 @@ def main():
     report=json.loads(report_path.read_text());params_path=a.retrieval_dir/'parameters.json'
     assert digest(params_path)==report['parameters_sha256']
     params=json.loads(params_path.read_text());is_full=report['state']=='validated_full_corpus_retrieval'
-    if not is_full:
+    is_candidate=report['state']=='validated_candidate_corpus_retrieval'
+    candidate_ids=None;candidate_texts={}
+    if is_candidate:
+        cp=a.root/'candidate_corpus_100k';cm=json.loads((cp/'manifest.json').read_text())
+        assert digest(cp/'manifest.json')==params['candidate_manifest_sha256']==report['candidate_manifest_sha256']
+        assert digest(cp/'passages.jsonl')==params['candidate_corpus_sha256']==report['candidate_corpus_sha256']==cm['passages_sha256']
+        assert report['corpus_passages_processed']==params['candidate_passages']==cm['passages']==100000
+        assert report['queries']==3000 and params['limit']==params['query_limit']==0
+        assert Counter(x['dataset'] for x in params['queries'])==dict(nq=1000,hotpotQA=1000,triviaQA=1000)
+        for line in (cp/'passages.jsonl').read_text(encoding='utf-8').splitlines():
+            row=json.loads(line);assert str(row['id']) not in candidate_texts
+            candidate_texts[str(row['id'])]=row['generator_text']
+        candidate_ids=set(candidate_texts);assert len(candidate_ids)==100000
+    if not is_full and not is_candidate:
         assert a.allow_subset_smoke and report['state']=='validated_subset_smoke','Full retrieval has not completed'
     if is_full:
         assert report['corpus_passages_processed']==21015324 and report['queries']==3000
@@ -36,7 +49,9 @@ def main():
     for line in run.read_text().splitlines():
         qid,_,did,rank,score,_=line.split();rank=int(rank);score=float(score)
         assert qid in questions and rank not in hits[qid] and 1<=rank<=10
-        assert math.isfinite(score) and 1<=int(did)<=report['corpus_passages_processed']
+        assert math.isfinite(score)
+        if is_candidate:assert did in candidate_ids
+        else:assert 1<=int(did)<=report['corpus_passages_processed']
         hits[qid][rank]=(did,score);needed.add(did)
     assert set(hits)==set(questions)
     for h in hits.values():
@@ -45,14 +60,16 @@ def main():
         assert all(h[i][1]!=h[i+1][1] or int(h[i][0])<int(h[i+1][0]) for i in range(1,10))
     # Preserve the generator formatting used by the frozen and rebuilt BM25 sets.
     passages={}
-    with gzip.open(a.root/'corpus/psgs_w100.tsv.gz','rt',encoding='utf-8') as f:
-        next(f)
-        for line in f:
-            fields=line.rstrip('\n').split('\t',2);did=fields[0]
-            if did in needed:
-                assert len(fields)==3 and did not in passages
-                passages[did]=fields[2]+'\n'+fields[1].strip('"')
-                if len(passages)==len(needed):break
+    if is_candidate:passages={did:candidate_texts[did] for did in needed}
+    else:
+        with gzip.open(a.root/'corpus/psgs_w100.tsv.gz','rt',encoding='utf-8') as f:
+            next(f)
+            for line in f:
+                fields=line.rstrip('\n').split('\t',2);did=fields[0]
+                if did in needed:
+                    assert len(fields)==3 and did not in passages
+                    passages[did]=fields[2]+'\n'+fields[1].strip('"')
+                    if len(passages)==len(needed):break
     assert set(passages)==needed
     pools={ds:{r['query_id']:r for r in map(json.loads,(a.root/f'prepared_inputs/{ds}_attack_pool.jsonl').read_text().splitlines())}
            for ds in {x['dataset'] for x in questions.values()}}
@@ -65,13 +82,15 @@ def main():
             clean_documents=docs,corpus_sha256=report['corpus_sha256'],
             retrieval_report_sha256=digest(report_path),run_sha256=report['run_sha256'],
             generator_text_format='raw DPR title+newline+raw body.strip(doublequote)',
-            full_corpus_retrieval=is_full))
+            full_corpus_retrieval=is_full,candidate_corpus_retrieval=is_candidate,
+            candidate_corpus_sha256=report.get('candidate_corpus_sha256'),
+            retrieval_limitation=report.get('limitation')))
     a.output.mkdir(parents=True,exist_ok=False)
     hashes={}
     for ds,rows in output.items():
         path=a.output/f'{ds}.jsonl';path.write_text(''.join(json.dumps(x,ensure_ascii=False)+'\n' for x in rows),encoding='utf-8')
         hashes[ds]=dict(rows=len(rows),sha256=digest(path))
-    result=dict(state='validated_materialized_full_dense' if is_full else 'validated_materialized_subset_smoke',
+    result=dict(state='validated_materialized_full_dense' if is_full else ('validated_materialized_candidate_dense' if is_candidate else 'validated_materialized_subset_smoke'),
         retriever=label,model_revision=revision,
         input_report_sha256=digest(report_path),run_sha256=report['run_sha256'],datasets=hashes,
         unique_passages=len(passages),paper_table_complete=False)

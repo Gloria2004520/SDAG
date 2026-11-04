@@ -3,13 +3,29 @@
 Requested scope: paper Tables 1, 2, 3 and 16, including all datasets,
 generators, retrievers and settings in those tables.
 
-**Scope update, 2026-11-04:** The user approved using existing models instead
-of waiting for the paper's original generators. The practical comparison will
-use the validated Qwen3-VL-8B text-only model and, after inference validation,
-the available Qwen2.5-7B-Instruct. Exact Llama/Mistral/Qwen paper-model coverage
-is no longer a requirement. Experiment 5 may use the available generator in
-place of Llama. Dataset, retriever, attack and defense coverage will be reported
-explicitly; this authorization does not turn incomplete cells into results.
+**Current scope, 2026-11-04:** The user approved existing-model substitution
+and explicitly selected a fixed shared **100,000-passage** corpus for E5 and
+Contriever, retaining **1,000 questions per dataset**. The generator is the
+already validated **Qwen3-VL-8B used with text-only inputs**, including experiment
+5 in place of Llama. Qwen2.5-7B is unnecessary for this revised scope: its local
+and Fuyao model directories were deleted at the user's request; no inference or
+generation results were produced with it. Historical model-audit files remain.
+
+The old full-corpus E5 job and queued full-corpus Contriever job were stopped.
+E5's last saved checkpoint covers 8,933,376 of 21,015,324 passages and remains
+**incomplete**, not a retrieval or QA result. It will not resume automatically.
+
+The 100k candidate pool contains the union of the existing full-BM25 top-ten
+hits for all 3,000 questions, with seed-42 random unique DPR IDs filling the
+remaining slots. Both dense retrievers use identical IDs. This query-informed
+pool favors BM25 coverage and is **not full-Wikipedia dense retrieval**. Existing
+BM25 lists retain their full-index scores and collection statistics; filtering
+those lists to this pool retains all top-ten hits. This does not claim a newly
+indexed 100k BM25 corpus. Existing full-BM25 QA results keep their provenance.
+New candidate-pool results will report selection, hashes, and actual coverage.
+
+Earlier progress entries below are historical; this scope supersedes earlier
+requests to await original generators or finish full-corpus dense retrieval.
 
 **The complete paper reproduction is not finished.** No preliminary run in
 this document establishes completion of any full requested table.
@@ -65,13 +81,14 @@ API credentials are runtime-only and are not included in the repository.
 
 ## Remaining dependencies and experiments
 
-- GPU inference validation of the available Qwen2.5-7B-Instruct; missing original
-  Llama/Mistral weights are no longer a blocker under the revised scope.
+- Complete the shared-100k E5/Contriever retrieval and remaining Qwen3-VL
+  attack/defense comparisons. Qwen2.5 was deleted; original weights are waived.
 - Matching E5/Contriever/BM25 retrieval artifacts, with top-5/top-10 provenance
   verified. The official Wikipedia December 2018 corpus has now been downloaded
   and validated: 21,015,324 passages, gzip integrity, source MD5 and SHA256.
   Its metadata is in `data/provenance/wiki_dpr_corpus.json`. Full BM25 retrieval
-  is complete (see the results below); E5 exhaustive retrieval is in progress
+  is complete (see the results below); full E5 retrieval was stopped in favor of
+    the user-approved shared 100k candidate corpus
   and Contriever retrieval has not started.
 - Formal attack selections, prompt positions and total retrieved-set sizes.
 - Original baseline implementations and hyperparameters, including RAGDefender.
@@ -84,7 +101,8 @@ No paper table values are copied into generated outputs.
 ## Model and downstream preparation (2026-11-04)
 
 Qwen/Qwen2.5-7B-Instruct revision
-`a09a35458c702b33eeacc393d103063234e8bc28` is now present on Fuyao.
+`a09a35458c702b33eeacc393d103063234e8bc28` was previously present on Fuyao
+and has since been deleted at the user's request (historical audit below).
 All four weight shards (15,231,271,888 bytes) passed remote SHA-256 verification.
 CPU-only checks verified all 339 tensor entries, BF16 storage offsets, embedding
 dimensions, tokenizer and chat template. These checks did not load the model
