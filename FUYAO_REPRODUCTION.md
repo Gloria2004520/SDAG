@@ -3,7 +3,21 @@
 Requested scope: paper Tables 1, 2, 3 and 16, including all datasets,
 generators, retrievers and settings in those tables.
 
-**Current scope, 2026-11-04:** The user approved existing-model substitution
+**Latest scope, 2026-11-04:** The user cancelled the E5/Contriever/BM25
+retriever comparison. Reuse the existing BM25 database and verified retrieval
+results with the validated Qwen3-VL-8B text-only generator. Do not build a new
+database or restart dense retrieval. Remaining work compares attack selection,
+the number of poisoned passages, and defense methods on fixed benign inputs.
+The original Llama/E5 multi-defense setup is therefore replaced by Qwen3-VL/BM25
+and will be disclosed. Adding more poisoned passages changes prompt composition
+and requires new QA generations, not another corpus retrieval pass.
+
+The shared-100k dense controller was stopped and Contriever retrieval cancelled.
+All completed QA outputs retain their provenance; no dense retrieval counter
+counts as an additional QA result. This latest scope supersedes the historical
+100k retrieval plan and original retriever-coverage requirements below.
+
+**Superseded scope, earlier on 2026-11-04:** The user approved existing-model substitution
 and explicitly selected a fixed shared **100,000-passage** corpus for E5 and
 Contriever, retaining **1,000 questions per dataset**. The generator is the
 already validated **Qwen3-VL-8B used with text-only inputs**, including experiment
