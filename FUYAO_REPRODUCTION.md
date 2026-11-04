@@ -23,7 +23,28 @@ audit: three datasets with 1,000 questions each, `(n_adv,total_k)` equal to
 single-poison completed results are reused. See `data/provenance/bm25_multiattack/`.
 A two-question generation smoke passed verification and the full CARG/SDAG
 batch is running sequentially. Pending outputs and smoke are excluded from the
-24,000 published QA records. Other defense baselines remain incomplete.
+published QA records. Other defense baselines remain incomplete.
+
+## New fixed-BM25 NQ result: two poisons, five total passages
+
+The first new multi-poison configuration completed all 1,000 NQ questions,
+with three existing BM25 benign hits and two distinct poison candidates at
+fixed-seed shuffled positions. The Qwen3-VL-8B substitute produced 2,000 verified
+CARG/SDAG records; no new retrieval was performed.
+
+| Method | Substring ACC | Substring ASR | Strict EM |
+| --- | ---: | ---: | ---: |
+| CARG | 11.6% | 50.9% | 6.9% |
+| SDAG | 10.4% | 46.3% | 6.5% |
+
+SDAG reduced ASR by 4.6 points (paired two-sided p=0.00005895). ACC decreased
+by 1.2 points (p=0.1516, not significant). Raw outputs, configuration, summary
+and verified report are in `results/qwen3vl8b_bm25_nq_a2_k5/`. These results use
+the current BM25 input assembly and differ from the earlier frozen-NQ two-poison
+run; the earlier raw outputs remain historical and are not substituted here.
+The cumulative published total is **26,000 generation records on 3,000 distinct
+questions**. The other eight multi-poison configurations and additional defense
+baselines remain incomplete; this does not complete the revised experiment scope.
 
 **Superseded scope, earlier on 2026-11-04:** The user approved existing-model substitution
 and explicitly selected a fixed shared **100,000-passage** corpus for E5 and
