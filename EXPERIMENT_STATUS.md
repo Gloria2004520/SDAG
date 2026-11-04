@@ -7,7 +7,7 @@
 | --- | --- | --- |
 | 实验1：三数据集、k5/10、单污染、CARG/SDAG | **6/6配置完成并上传** | 直接复用 |
 | 实验4：NQ1000、k5、Random/Near/Far | **3/3策略有完整输出并上传** | 复用历史输入版本，不重跑 |
-| 实验5：污染数量、CARG/SDAG | **12/15配置完成并上传** | 3个未完成，当前运行 `nq_a3_k10` |
+| 实验5：污染数量、CARG/SDAG | **13/15配置完成并上传** | 2个未完成，当前运行 `hotpotQA_a3_k10` |
 | 实验5：RAGDefender、D&A及各自SDAG组合 | **尚无完整正式问答结果** | 共用过滤缓存处理中，问答已排队；见[适配差异](BASELINE_ADAPTATIONS.md) |
 | 检索器对比、原论文三生成器 | **已取消/允许替代** | 不再作为完成要求 |
 
@@ -15,8 +15,8 @@
 
 | 数据集 | (1,5) | (1,10) | (2,5) | (2,10) | (3,10) |
 | --- | --- | --- | --- | --- | --- |
-| nq | 已完成 | 已完成 | 已完成（复用旧双对抗） | 已完成 | 运行中 |
-| hotpotQA | 已完成 | 已完成 | 已完成 | 已完成 | 排队 |
+| nq | 已完成 | 已完成 | 已完成（复用旧双对抗） | 已完成 | 已完成 |
+| hotpotQA | 已完成 | 已完成 | 已完成 | 已完成 | 运行中 |
 | triviaQA | 已完成 | 已完成 | 已完成 | 已完成 | 排队 |
 
 ## 已完成配置的结果
@@ -29,6 +29,7 @@
 | nq | (1,10) | 22.8/39.5 | 26.3/18.7 | [结果](results/qwen3vl8b_bm25_nq_k10/verified_report.json) |
 | nq | (2,5) | 12.8/50.5 | 11.2/46.4 | [结果](results/qwen3vl8b_nq_two_attacks_k5/verified_report.json) |
 | nq | (2,10) | 17.2/45.6 | 17.8/34.5 | [结果](results/qwen3vl8b_bm25_nq_a2_k10/verified_report.json) |
+| nq | (3,10) | 14.5/50.2 | 11.8/47.8 | [结果](results/qwen3vl8b_bm25_nq_a3_k10/verified_report.json) |
 | hotpotQA | (1,5) | 11.8/67.5 | 16.7/45.6 | [结果](results/qwen3vl8b_bm25_hotpotQA_k5/verified_report.json) |
 | hotpotQA | (1,10) | 14.7/63.6 | 20.3/35.0 | [结果](results/qwen3vl8b_bm25_hotpotQA_k10/verified_report.json) |
 | hotpotQA | (2,5) | 5.7/76.5 | 5.4/71.3 | [结果](results/qwen3vl8b_bm25_hotpotQA_a2_k5/verified_report.json) |
