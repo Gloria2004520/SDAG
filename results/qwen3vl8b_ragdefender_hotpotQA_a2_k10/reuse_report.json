@@ -1,0 +1,9 @@
+{
+  "policy": "Reuse canonical answer only when question, ordered stripped document texts, mask mode and model/settings are unchanged; generate changed prompts only",
+  "source": {
+    "canonical_result": "results/qwen3vl8b_bm25_hotpotQA_a2_k10",
+    "predictions_sha256": "3d32850be33f00747105219c033928ca20c638c4df46be7579d80c9553ac78ec"
+  },
+  "reused_records": 0,
+  "reused_keys": []
+}
