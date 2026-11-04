@@ -1,0 +1,80 @@
+{
+  "status": "verified_complete_substitute_run",
+  "paper_exact": false,
+  "limitations": [
+    "Qwen3-VL-8B substitutes for paper Qwen7B",
+    "Does not complete requested Tables1,2,3,16",
+    "Defense embedding/API/prompt adaptations disclosed in defense_evidence; not exact baseline replication"
+  ],
+  "retrieval_evidence": {
+    "status": "reused_canonical_BM25_inputs",
+    "canonical_source": {
+      "path": "repo/data/prepared/bm25_grid/nq_k10.jsonl",
+      "sha256": "2f94d745aef16f2c0d22ac7eff9af6af0878f52f766b922eceeeb3f97b4f54e8"
+    },
+    "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a"
+  },
+  "defense_evidence": {
+    "state": "verified_filtered_input",
+    "config": "nq_a1_k10",
+    "defense": "joint_da",
+    "questions": 1000,
+    "input_sha256": "46a9ab1b8fd6222fb827e27d465742aa6e0316705016c6dc7a8fedf8dd2cd995",
+    "canonical_source": {
+      "path": "repo/data/prepared/bm25_grid/nq_k10.jsonl",
+      "sha256": "2f94d745aef16f2c0d22ac7eff9af6af0878f52f766b922eceeeb3f97b4f54e8"
+    },
+    "decisions_sha256": "61f23e532efd07645031720f705c27a43458c52bac7387c3d0a1c2a2c35b9b26",
+    "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+    "retained_documents": 9040,
+    "removed_documents": 960,
+    "empty_contexts": 0,
+    "qa_generations": 0,
+    "adaptation": "D&A-inspired joint filter: original fewshot/instruction plus explicit JSON classification-only override; DeepSeek filter then Qwen answer; joint answer omitted. Cache shared by CARG/SDAG. Not exact original joint D&A.",
+    "canonical_result": "results/qwen3vl8b_bm25_nq_k10"
+  },
+  "samples_per_condition": 1000,
+  "record_count": 2000,
+  "metrics": {
+    "poisoned_carg": {
+      "acc": 0.39,
+      "asr": 0.03,
+      "strict_em": 0.244
+    },
+    "poisoned_sdag": {
+      "acc": 0.334,
+      "asr": 0.024,
+      "strict_em": 0.198
+    }
+  },
+  "paired_tests": {
+    "acc": {
+      "sdag_minus_carg": -0.056,
+      "p_value_two_sided": 1.3093033220769026e-07,
+      "n": 1000
+    },
+    "asr": {
+      "sdag_minus_carg": -0.006,
+      "p_value_two_sided": 0.17984313165457533,
+      "n": 1000
+    }
+  },
+  "predictions_sha256": "966b660e26c6ad8a153630f7e3fba638557e56e24361535a92ae53e8ad2cf097",
+  "config": {
+    "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "data": "data/prepared/filtered/joint_da/nq_a1_k10.jsonl",
+    "conditions": "poisoned_carg,poisoned_sdag",
+    "temperature": 0.1,
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "limit": 1000,
+    "max_new_tokens": 500,
+    "output": "results/qwen3vl8b_joint_da_nq_a1_k10",
+    "seed": 42,
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "python": "3.11.15",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "source_sha256": "46a9ab1b8fd6222fb827e27d465742aa6e0316705016c6dc7a8fedf8dd2cd995",
+    "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+  }
+}
