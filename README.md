@@ -1,5 +1,7 @@
 # Sparse (Document)-Attention RAG under Corpus Knowledge Poisoning Attacks
 
+**2026-11-04 approximate reproduction:** the revised Qwen3-VL/BM25 scope is complete. See [final results, disclosures and reproduction instructions](FINAL_RESULTS.md), [coverage checklist](EXPERIMENT_STATUS.md), and [six-method metrics](results/defense_comparison_final/metrics.csv).
+
 ## Overview
 This repository contains the official code for the paper "Addressing Corpus Knowledge Poisoning Attacks on RAG Using Sparse Attention”.
 
