@@ -2,7 +2,7 @@
 
 No API requests or generation. Missing/error decisions fail rather than keep all.
 """
-import argparse,copy,hashlib,json
+import argparse,copy,hashlib,json,fcntl
 from pathlib import Path
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def canonical_result_for(config):
@@ -17,6 +17,7 @@ def main():
     source=manifest['sources'][a.config];path=root/source['path'];assert digest(path)==source['sha256']
     original=[json.loads(x) for x in path.read_text().splitlines()];assert len(original)==1000
     target_dir=root/f'repo/data/prepared/filtered/{a.defense}';target_dir.mkdir(parents=True,exist_ok=True)
+    lock=(target_dir/f'{a.config}.materialize.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX)
     target=target_dir/f'{a.config}.jsonl';report_path=target_dir/f'{a.config}.report.json'
     if report_path.exists():
         report=json.loads(report_path.read_text());assert digest(target)==report['input_sha256']
