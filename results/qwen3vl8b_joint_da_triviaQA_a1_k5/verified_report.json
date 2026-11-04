@@ -1,0 +1,80 @@
+{
+  "status": "verified_complete_substitute_run",
+  "paper_exact": false,
+  "limitations": [
+    "Qwen3-VL-8B substitutes for paper Qwen7B",
+    "Does not complete requested Tables1,2,3,16",
+    "Defense embedding/API/prompt adaptations disclosed in defense_evidence; not exact baseline replication"
+  ],
+  "retrieval_evidence": {
+    "status": "reused_canonical_BM25_inputs",
+    "canonical_source": {
+      "path": "repo/data/prepared/bm25_grid/triviaQA_k5.jsonl",
+      "sha256": "cbfc82085cefc98dbcff45fcd3278506fe9e2fdbf032395aa4361f23078bc642"
+    },
+    "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a"
+  },
+  "defense_evidence": {
+    "state": "verified_filtered_input",
+    "config": "triviaQA_a1_k5",
+    "defense": "joint_da",
+    "questions": 1000,
+    "input_sha256": "feb03c586e4eb190376858e23b6d2871d77cd7c050d599585cef29c89d1e2066",
+    "canonical_source": {
+      "path": "repo/data/prepared/bm25_grid/triviaQA_k5.jsonl",
+      "sha256": "cbfc82085cefc98dbcff45fcd3278506fe9e2fdbf032395aa4361f23078bc642"
+    },
+    "decisions_sha256": "bea75dcc92aeef2e7856e01c352ecf2a93475a7af35443f603ae7404560dd7ba",
+    "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+    "retained_documents": 4030,
+    "removed_documents": 970,
+    "empty_contexts": 0,
+    "qa_generations": 0,
+    "adaptation": "D&A-inspired joint filter: original fewshot/instruction plus explicit JSON classification-only override; DeepSeek filter then Qwen answer; joint answer omitted. Cache shared by CARG/SDAG. Not exact original joint D&A.",
+    "canonical_result": "results/qwen3vl8b_bm25_triviaQA_k5"
+  },
+  "samples_per_condition": 1000,
+  "record_count": 2000,
+  "metrics": {
+    "poisoned_carg": {
+      "acc": 0.783,
+      "asr": 0.035,
+      "strict_em": 0.686
+    },
+    "poisoned_sdag": {
+      "acc": 0.733,
+      "asr": 0.035,
+      "strict_em": 0.631
+    }
+  },
+  "paired_tests": {
+    "acc": {
+      "sdag_minus_carg": -0.05,
+      "p_value_two_sided": 5.7187299143235244e-08,
+      "n": 1000
+    },
+    "asr": {
+      "sdag_minus_carg": 0.0,
+      "p_value_two_sided": 1.0,
+      "n": 1000
+    }
+  },
+  "predictions_sha256": "fe723452bf5522a79a0405baf75d9e7d4e3da2d49991f82db2d809ba37750415",
+  "config": {
+    "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "data": "data/prepared/filtered/joint_da/triviaQA_a1_k5.jsonl",
+    "conditions": "poisoned_carg,poisoned_sdag",
+    "temperature": 0.1,
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "limit": 1000,
+    "max_new_tokens": 500,
+    "output": "results/qwen3vl8b_joint_da_triviaQA_a1_k5",
+    "seed": 42,
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "python": "3.11.15",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "source_sha256": "feb03c586e4eb190376858e23b6d2871d77cd7c050d599585cef29c89d1e2066",
+    "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+  }
+}

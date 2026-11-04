@@ -1,0 +1,19 @@
+{
+  "state": "verified_filtered_input",
+  "config": "triviaQA_a1_k5",
+  "defense": "joint_da",
+  "questions": 1000,
+  "input_sha256": "feb03c586e4eb190376858e23b6d2871d77cd7c050d599585cef29c89d1e2066",
+  "canonical_source": {
+    "path": "repo/data/prepared/bm25_grid/triviaQA_k5.jsonl",
+    "sha256": "cbfc82085cefc98dbcff45fcd3278506fe9e2fdbf032395aa4361f23078bc642"
+  },
+  "decisions_sha256": "bea75dcc92aeef2e7856e01c352ecf2a93475a7af35443f603ae7404560dd7ba",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 4030,
+  "removed_documents": 970,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": "D&A-inspired joint filter: original fewshot/instruction plus explicit JSON classification-only override; DeepSeek filter then Qwen answer; joint answer omitted. Cache shared by CARG/SDAG. Not exact original joint D&A.",
+  "canonical_result": "results/qwen3vl8b_bm25_triviaQA_k5"
+}
