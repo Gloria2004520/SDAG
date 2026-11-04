@@ -1,0 +1,22 @@
+{
+  "state": "verified_filtered_input",
+  "config": "nq_a1_k10",
+  "defense": "ragdefender",
+  "questions": 1000,
+  "input_sha256": "409be2fb7471ef5b224b4835f7476479530925e9750009ddacf33e6bbe2a4f85",
+  "canonical_source": {
+    "path": "repo/data/prepared/bm25_grid/nq_k10.jsonl",
+    "sha256": "2f94d745aef16f2c0d22ac7eff9af6af0878f52f766b922eceeeb3f97b4f54e8"
+  },
+  "decisions_sha256": "6831af8628335074d3811eae894690225698497daa19dc4fa78a4d27e92dd70d",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 5964,
+  "removed_documents": 4036,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": [
+    "BGE-small substitutes original Stella embedding model",
+    "Version0.2 Stage2fix used; concentration code OR/threshold/result-flip differs paper equations; code-as-published baseline, not exact equation replication"
+  ],
+  "canonical_result": "results/qwen3vl8b_bm25_nq_k10"
+}
