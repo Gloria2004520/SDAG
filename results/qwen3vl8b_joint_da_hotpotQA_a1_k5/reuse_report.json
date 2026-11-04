@@ -1,0 +1,450 @@
+{
+  "policy": "Reuse canonical answer only when question, ordered stripped document texts, mask mode and model/settings are unchanged; generate changed prompts only",
+  "source": {
+    "canonical_result": "results/qwen3vl8b_bm25_hotpotQA_k5",
+    "predictions_sha256": "1f9119b62fdcea4691705ea22f4664365cff634906b5638546f991c72b7a1e3f"
+  },
+  "reused_records": 110,
+  "reused_keys": [
+    {
+      "query_id": "5ab78a445542992aa3b8c826",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ab78a445542992aa3b8c826",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a722fae55429971e9dc9343",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a722fae55429971e9dc9343",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5add596f5542990dbb2f7e4d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5add596f5542990dbb2f7e4d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8e17ce554299653c1aa169",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8e17ce554299653c1aa169",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5aba480c55429939ce03dc77",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5aba480c55429939ce03dc77",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ac00584554299012d1db575",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ac00584554299012d1db575",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a81e4e8554299676cceb140",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a81e4e8554299676cceb140",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a87560d5542994775f607d9",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a87560d5542994775f607d9",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a84564c5542990548d0b288",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a84564c5542990548d0b288",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a772e465542994aec3b7209",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a772e465542994aec3b7209",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ac23f9555429951e9e684db",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ac23f9555429951e9e684db",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5abbd66a5542993f40c73bd8",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5abbd66a5542993f40c73bd8",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7cdc1b55429907fabef04d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7cdc1b55429907fabef04d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7309a15542992359bc320c",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7309a15542992359bc320c",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7d54165542995f4f402256",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7d54165542995f4f402256",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ac3c10a554299204fd21e33",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ac3c10a554299204fd21e33",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8aed1555429970aeb70334",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8aed1555429970aeb70334",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8f4d895542992414482a2d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8f4d895542992414482a2d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ae4c39f5542995dadf243fb",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ae4c39f5542995dadf243fb",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5abc0e095542996583600417",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5abc0e095542996583600417",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a882d9a5542997e5c09a599",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a882d9a5542997e5c09a599",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a753c8c55429916b01642ab",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a753c8c55429916b01642ab",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ab29426554299545a2cf99f",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ab29426554299545a2cf99f",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8b5c8155429949d91db56d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8b5c8155429949d91db56d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a86f204554299211dda2b60",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a86f204554299211dda2b60",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ae1fd995542997283cd2313",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ae1fd995542997283cd2313",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7e05635542995f4f40238f",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7e05635542995f4f40238f",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ade03da5542997dc7907120",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ade03da5542997dc7907120",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a86ebac55429960ec39b6d6",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a86ebac55429960ec39b6d6",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ab915ad55429919ba4e239c",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ab915ad55429919ba4e239c",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8a39195542992d82986f04",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8a39195542992d82986f04",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7150c75542994082a3e7be",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7150c75542994082a3e7be",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a85b2895542994c784ddb49",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a85b2895542994c784ddb49",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ae4a1ef55429970de88d9e7",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ae4a1ef55429970de88d9e7",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5abb93275542993f40c73b3c",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5abb93275542993f40c73b3c",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a74a8fa55429929fddd8497",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a74a8fa55429929fddd8497",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a84bbb35542991dd0999dc0",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a84bbb35542991dd0999dc0",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5add1aa65542990d50227de1",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5add1aa65542990d50227de1",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ac3f18d554299204fd21ed3",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ac3f18d554299204fd21ed3",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5abb2e6855429966062416df",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5abb2e6855429966062416df",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a83eaae55429933447460b4",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a83eaae55429933447460b4",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a837d9a554299123d8c213e",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a837d9a554299123d8c213e",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ab5062f55429942dd415fd1",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ab5062f55429942dd415fd1",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ae0380955429925eb1afc2e",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ae0380955429925eb1afc2e",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5ab56555554299494045ef97",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5ab56555554299494045ef97",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5adf9ee75542992d7e9f93c0",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5adf9ee75542992d7e9f93c0",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a84a5dc5542992a431d1a82",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a84a5dc5542992a431d1a82",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a84f5865542991dd0999e30",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a84f5865542991dd0999e30",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a70f1685542994082a3e40f",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a70f1685542994082a3e40f",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a7a3dbb5542996a35c17157",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a7a3dbb5542996a35c17157",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a74c6a655429974ef308c5d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a74c6a655429974ef308c5d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8a12ae5542992d82986e92",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8a12ae5542992d82986e92",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5aba89fb5542994dbf019933",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5aba89fb5542994dbf019933",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a8182e255429938b614234d",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a8182e255429938b614234d",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "5a76a2b55542993569682c6c",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "5a76a2b55542993569682c6c",
+      "condition": "poisoned_sdag"
+    }
+  ]
+}
