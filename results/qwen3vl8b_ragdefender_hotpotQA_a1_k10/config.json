@@ -1,0 +1,17 @@
+{
+  "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "data": "data/prepared/filtered/ragdefender/hotpotQA_a1_k10.jsonl",
+  "conditions": "poisoned_carg,poisoned_sdag",
+  "temperature": 0.1,
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "limit": 1000,
+  "max_new_tokens": 500,
+  "output": "results/qwen3vl8b_ragdefender_hotpotQA_a1_k10",
+  "seed": 42,
+  "torch": "2.8.0+cu128",
+  "transformers": "4.57.1",
+  "python": "3.11.15",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "source_sha256": "b592835f8ab945b72ca3cfa08eabaef781bc32271450485da4a6bace19e4b895",
+  "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+}

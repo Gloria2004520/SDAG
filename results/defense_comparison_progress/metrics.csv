@@ -1,0 +1,7 @@
+dataset,n_adv,total_k,method,acc,asr,strict_em
+hotpotQA,1,10,CARG,0.147,0.636,0.124
+hotpotQA,1,10,SDAG,0.203,0.35,0.16
+hotpotQA,1,10,joint_da,0.366,0.059,0.29
+hotpotQA,1,10,joint_da+SDAG,0.278,0.049,0.21
+hotpotQA,1,10,ragdefender,0.067,0.641,0.057
+hotpotQA,1,10,ragdefender+SDAG,0.091,0.435,0.065

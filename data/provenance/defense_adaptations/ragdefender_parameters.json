@@ -1,0 +1,50 @@
+{
+  "library_version": "0.2.0",
+  "source_commit": "ba2a17efba165d45409114df2d70b030ade1e1b8",
+  "embedder": "BAAI/bge-small-en-v1.5",
+  "embedder_revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+  "device": "cpu",
+  "p": 2,
+  "m": 5,
+  "task_types": {
+    "nq": "single_hop",
+    "triviaQA": "single_hop",
+    "hotpotQA": "multi_hop"
+  },
+  "source_sha256": {
+    "__init__.py": "d9ba17c52cb7e660f09c1c022c57ef828b942847bfdab21a527e61fd5608b21f",
+    "_logging.py": "56daa62a38ff91d7479f38cc9fd568fb7b0a57b1b2d2cccabaa45ac0f4962dd6",
+    "cli.py": "eee54b959750cbcb4e65e5ff77a40992a84067d9f4d25995f7b6825725578c84",
+    "core/__init__.py": "a455fdb7af2af18ec89c49bddcdc22a642ffb5c3e5b986d718076641cc9fd799",
+    "core/defender.py": "103c6e8d8e35a89ef240f47e06544a8c58fa3bfc7b8e54c1b46f297218d679f0",
+    "core/evaluator.py": "62d8fad69d641a9fda20179c8946f8f04d7cd378e4f2c52a682a508fcfeb5ba6",
+    "defender.py": "1f4253064d11ae262def126a2f4c66c28c604f3d2b9d9f7124e051372fe1f8b1",
+    "embedders.py": "55c134fcd223075fe949458d8379b1436322e69736e4689055ec18ede27507a1",
+    "evaluator.py": "31b99591784a2b3d008305f673755129730759150742a49f0ecc2e31314b91cf",
+    "grouping/__init__.py": "b5641f1349aee0151eaa38c029cb6aca9bf0894266aa0d017adc731b9be0386c",
+    "grouping/base.py": "3e57924b15244aebf10416f4251313145cbc9115a60adbb6c9c9f4ab6bcf6337",
+    "grouping/clustering.py": "d7e609bb8024565a87a8a8c5cc8bea57279fafd4f22d4c19c035d7b9deb46e21",
+    "grouping/concentration.py": "4e9a0f9cb9ece765e0bb56c044dc17c38e0cd3453a83b5507f04add00a37139e",
+    "identification/__init__.py": "9d13e0db5d7b88304582e8f28dd47ec0eed588b4b014e239e273cc8b5191ef5e",
+    "identification/topk.py": "6f4c21f255892083a7a2d5806dd0ae7e35f904ae005a34e597e81d80cc769c0f",
+    "similarity.py": "5067ef31500e3cff4a12ac6f3fd50828c5a8b79ad07bee59eed30f206e2467ef"
+  },
+  "model_sha256": {
+    "1_Pooling/config.json": "d1caf60c96f5fba2157c0c26b76d80818fad6cf0b8eb5e73ec372ff9818eba5c",
+    "README.md": "ddb964361a55c6e5dfca6361615854b260c9c960205d04c7520151aaa1d75837",
+    "config.json": "094f8e891b932f2000c92cfc663bac4c62069f5d8af5b5278c4306aef3084750",
+    "config_sentence_transformers.json": "940d5f50db195fa6e5e6a4f122c095f77880de259d74b14a65779ed48bdd7c56",
+    "model.safetensors": "3c9f31665447c8911517620762200d2245a2518d6e7208acc78cd9db317e21ad",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "sentence_bert_config.json": "84e39fda68ccbff05bfa723ae9c0e70e23e2ec373b76e0f8c6e71af72a693cbf",
+    "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+    "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+    "tokenizer_config.json": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+  },
+  "limitations": [
+    "BGE-small substitutes original Stella embedding model",
+    "Version0.2 Stage2fix used; concentration code OR/threshold/result-flip differs paper equations; code-as-published baseline, not exact equation replication"
+  ],
+  "paper_exact": false
+}
