@@ -1,0 +1,17 @@
+{
+  "model": "/dataset_nav_vla_o1_p2/cu8_navigation/hugging_face/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "data": "data/prepared/filtered/joint_da/triviaQA_a1_k10.jsonl",
+  "conditions": "poisoned_carg,poisoned_sdag",
+  "temperature": 0.1,
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "limit": 1000,
+  "max_new_tokens": 500,
+  "output": "results/qwen3vl8b_joint_da_triviaQA_a1_k10",
+  "seed": 42,
+  "torch": "2.8.0+cu128",
+  "transformers": "4.57.1",
+  "python": "3.11.15",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "source_sha256": "d5be8bf6a27b88f0c35be0912bb0d73322e4313117a8d2c923072362189c043a",
+  "setting": "preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0"
+}

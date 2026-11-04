@@ -8,7 +8,7 @@
 | 实验1：三数据集、k5/10、单污染、CARG/SDAG | **6/6配置完成并上传** | 直接复用 |
 | 实验4：NQ1000、k5、Random/Near/Far | **3/3策略有完整输出并上传** | 复用历史输入版本，不重跑 |
 | 实验5：污染数量、CARG/SDAG | **15/15配置完成并上传** | 此项已完成，直接复用 |
-| 实验5：RAGDefender、D&A及各自SDAG组合 | **22/30配置完成并上传** | Fuyao任务46399286：两张独立GPU并行处理不同缺项；见[适配差异](BASELINE_ADAPTATIONS.md) |
+| 实验5：RAGDefender、D&A及各自SDAG组合 | **23/30配置完成并上传** | Fuyao任务46399286：两张独立GPU并行处理不同缺项；见[适配差异](BASELINE_ADAPTATIONS.md) |
 | 检索器对比、原论文三生成器 | **已取消/允许替代** | 不再作为完成要求 |
 
 ## 实验5：CARG/SDAG的15个配置
@@ -35,6 +35,7 @@
 | joint_da适配 | hotpotQA | (2,5) | 28.9/15.8 | 24.6/14.9 | 258 | [结果](results/qwen3vl8b_joint_da_hotpotQA_a2_k5/verified_report.json) |
 | joint_da适配 | hotpotQA | (2,10) | 33.8/11.1 | 26.5/9.4 | 176 | [结果](results/qwen3vl8b_joint_da_hotpotQA_a2_k10/verified_report.json) |
 | joint_da适配 | hotpotQA | (3,10) | 32.2/15.5 | 26.6/14.2 | 254 | [结果](results/qwen3vl8b_joint_da_hotpotQA_a3_k10/verified_report.json) |
+| joint_da适配 | triviaQA | (1,10) | 80.4/3.2 | 73.2/2.6 | 62 | [结果](results/qwen3vl8b_joint_da_triviaQA_a1_k10/verified_report.json) |
 | ragdefender适配 | nq | (1,5) | 12.5/42.6 | 13.4/32.0 | 0 | [结果](results/qwen3vl8b_ragdefender_nq_a1_k5/verified_report.json) |
 | ragdefender适配 | nq | (1,10) | 16.2/41.4 | 17.2/25.9 | 0 | [结果](results/qwen3vl8b_ragdefender_nq_a1_k10/verified_report.json) |
 | ragdefender适配 | nq | (2,5) | 25.3/12.9 | 22.2/12.6 | 0 | [结果](results/qwen3vl8b_ragdefender_nq_a2_k5/verified_report.json) |

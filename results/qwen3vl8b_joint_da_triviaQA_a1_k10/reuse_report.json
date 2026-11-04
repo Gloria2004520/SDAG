@@ -1,0 +1,258 @@
+{
+  "policy": "Reuse canonical answer only when question, ordered stripped document texts, mask mode and model/settings are unchanged; generate changed prompts only",
+  "source": {
+    "canonical_result": "results/qwen3vl8b_bm25_triviaQA_k10",
+    "predictions_sha256": "256e3850bf4bbcbd490bf3bac488a8379540b8a7f91719bb10363ed2f41c1260"
+  },
+  "reused_records": 62,
+  "reused_keys": [
+    {
+      "query_id": "sfq_15625",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_15625",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "bt_1805",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "bt_1805",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "tc_2901",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "tc_2901",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_7287",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_7287",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qz_3588",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qz_3588",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "jp_4053",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "jp_4053",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "wh_2429",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "wh_2429",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "bb_9117",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "bb_9117",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "jp_1257",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "jp_1257",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_6452",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_6452",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qw_9549",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qw_9549",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qb_9469",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qb_9469",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "tc_1945",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "tc_1945",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qw_2462",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qw_2462",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_25375",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_25375",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "odql_12528",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "odql_12528",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "dpql_1208",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "dpql_1208",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qw_8018",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qw_8018",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_1821",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_1821",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "bb_8967",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "bb_8967",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qw_540",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qw_540",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qw_1282",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qw_1282",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_6995",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_6995",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_18988",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_18988",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qb_2071",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qb_2071",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "qf_620",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "qf_620",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "tc_2669",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "tc_2669",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_1426",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_1426",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "odql_13629",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "odql_13629",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "sfq_21536",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "sfq_21536",
+      "condition": "poisoned_sdag"
+    },
+    {
+      "query_id": "dpql_1884",
+      "condition": "poisoned_carg"
+    },
+    {
+      "query_id": "dpql_1884",
+      "condition": "poisoned_sdag"
+    }
+  ]
+}
