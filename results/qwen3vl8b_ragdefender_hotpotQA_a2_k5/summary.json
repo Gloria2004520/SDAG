@@ -1,0 +1,18 @@
+{
+  "seconds": 714.1364192962646,
+  "peak_gpu_bytes": 17958686720,
+  "conditions": {
+    "poisoned_carg": {
+      "n": 1000,
+      "acc": 0.179,
+      "asr": 0.352,
+      "strict_em": 0.147
+    },
+    "poisoned_sdag": {
+      "n": 1000,
+      "acc": 0.161,
+      "asr": 0.308,
+      "strict_em": 0.133
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "state": "verified_filtered_input",
+  "config": "hotpotQA_a2_k5",
+  "defense": "ragdefender",
+  "questions": 1000,
+  "input_sha256": "7271bf053107f9a0277a5f5fcc67f92ce382731670ceefbacc4f969763cb4808",
+  "canonical_source": {
+    "path": "repo/data/prepared/bm25_multiattack/hotpotQA_a2_k5.jsonl",
+    "sha256": "e16dbcbb0cf02ca06e60e21431fe39008ebbecd4ad03eb827420c74043a0db91"
+  },
+  "decisions_sha256": "f6b0a3ceb55e0672ebb48c3fb61ac8f71b1828f9b3da82e3e6b83525c2b8ec7c",
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "retained_documents": 2703,
+  "removed_documents": 2297,
+  "empty_contexts": 0,
+  "qa_generations": 0,
+  "adaptation": [
+    "BGE-small substitutes original Stella embedding model",
+    "Version0.2 Stage2fix used; concentration code OR/threshold/result-flip differs paper equations; code-as-published baseline, not exact equation replication"
+  ],
+  "canonical_result": "results/qwen3vl8b_bm25_hotpotQA_a2_k5"
+}
