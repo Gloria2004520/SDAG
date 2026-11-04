@@ -3,6 +3,14 @@
 Requested scope: paper Tables 1, 2, 3 and 16, including all datasets,
 generators, retrievers and settings in those tables.
 
+**Scope update, 2026-11-04:** The user approved using existing models instead
+of waiting for the paper's original generators. The practical comparison will
+use the validated Qwen3-VL-8B text-only model and, after inference validation,
+the available Qwen2.5-7B-Instruct. Exact Llama/Mistral/Qwen paper-model coverage
+is no longer a requirement. Experiment 5 may use the available generator in
+place of Llama. Dataset, retriever, attack and defense coverage will be reported
+explicitly; this authorization does not turn incomplete cells into results.
+
 **The complete paper reproduction is not finished.** No preliminary run in
 this document establishes completion of any full requested table.
 
@@ -57,7 +65,8 @@ API credentials are runtime-only and are not included in the repository.
 
 ## Remaining dependencies and experiments
 
-- Authorized, pinned Llama-8B, paper Qwen-7B and Mistral-7B weights.
+- GPU inference validation of the available Qwen2.5-7B-Instruct; missing original
+  Llama/Mistral weights are no longer a blocker under the revised scope.
 - Matching E5/Contriever/BM25 retrieval artifacts, with top-5/top-10 provenance
   verified. The official Wikipedia December 2018 corpus has now been downloaded
   and validated: 21,015,324 passages, gzip integrity, source MD5 and SHA256.
