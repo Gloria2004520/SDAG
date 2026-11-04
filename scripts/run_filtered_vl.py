@@ -41,6 +41,15 @@ if __name__=='__main__':
             reuse[signature(originals[row['query_id']]['question'],docs,row['condition']=='poisoned_sdag')]=row
         source_evidence=dict(canonical_result=report['canonical_result'],predictions_sha256=verified['predictions_sha256'])
     runner.main()
+    # Reconstruct reuse across both the preserved prefix and newly generated suffix.
+    inputs={r['query_id']:r for r in map(json.loads,source.read_text().splitlines())}
+    reused=[]
+    for result in map(json.loads,(runner.ROOT/a.output/'predictions.jsonl').read_text().splitlines()):
+        row=inputs[result['query_id']]
+        match=reuse.get(signature(row['question'],row['poisoned_documents'],result['condition']=='poisoned_sdag'))
+        if match is not None:
+            assert result['answer']==match['answer']
+            reused.append(dict(query_id=result['query_id'],condition=result['condition']))
     (runner.ROOT/a.output/'reuse_report.json').write_text(json.dumps(dict(
         policy='Reuse canonical answer only when question, ordered stripped document texts, mask mode and model/settings are unchanged; generate changed prompts only',
         source=source_evidence,reused_records=len(reused),reused_keys=reused),indent=2))

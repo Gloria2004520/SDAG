@@ -38,5 +38,9 @@ complete. Final cross-method statistics must align canonical question IDs.
 
 Scripts: `cache_ragdefender.py`, `joint_da_adapter.py`, `cache_joint_da.py`,
 `materialize_filter_cache.py`, `run_filtered_vl.py`, `summarize_verified_run.py`.
-The queued Fuyao controller waits for the current GPU lock before validating
-the empty-context branch and running missing defense configurations.
+Fuyao job 46399286 completed 17 scheduled configurations before its worker was
+killed. The final D&A-inspired TriviaQA (3,10) configuration preserved its first
+1244 output records; only the missing 756 records continue on the original node
+under the GPU lock. Continuation restarts sampling seed 42, so its random stream
+differs from an uninterrupted run. The config records the preserved prefix hash
+and count. Existing answers are neither overwritten nor generated again.

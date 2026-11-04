@@ -80,6 +80,7 @@ def main():
     p.add_argument('--limit', type=int, default=100)
     p.add_argument('--max-new-tokens', type=int, default=500)
     p.add_argument('--output', default='results/basic_gpu')
+    p.add_argument('--resume', action='store_true', help='Preserve a validated output prefix; seed 42 restarts for missing records only')
     args = p.parse_args()
     requested = args.conditions.split(',')
     if not requested or len(requested)!=len(set(requested)) or not set(requested)<=set(('clean_carg','poisoned_carg','poisoned_sdag')):
@@ -93,25 +94,43 @@ def main():
     output = ROOT / args.output
     output.mkdir(parents=True, exist_ok=True)
     target = output / 'predictions.jsonl'
-    if target.exists():
+    previous=[]
+    if target.exists() and not args.resume:
         raise FileExistsError(f'Use a new output directory to avoid overwriting {target}')
+    if args.resume:
+        assert target.exists() and not (output/'summary.json').exists(), 'Resume only an incomplete run'
+        old=json.loads((output/'config.json').read_text())
+        for key in ('model','data','conditions','temperature','revision','limit','max_new_tokens'):
+            assert old[key]==getattr(args,key), f'Resume setting mismatch: {key}'
+        assert old['source_sha256']==hashlib.sha256(source.read_bytes()).hexdigest()
+        previous=[json.loads(line) for line in target.read_text().splitlines()]
+        expected=[(r,c) for r in rows for c in ('clean_carg','poisoned_carg','poisoned_sdag') if c in requested]
+        assert 0<len(previous)<len(expected)
+        for saved,(r,c) in zip(previous,expected):
+            assert (saved['query_id'],saved['condition'])==(r['query_id'],c), 'Output must be an ordered prefix'
+            assert saved['ground_truth_answers']==r['ground_truth_answers'] and saved['false_answer']==r['false_answer']
+        old['resume_evidence']=dict(preserved_records=len(previous),prefix_sha256=hashlib.sha256(target.read_bytes()).hexdigest(),
+            sampling_note='Original worker was killed; missing records restart seed 42. Existing answers are preserved, not regenerated.')
     metadata = dict(vars(args), seed=42, torch=torch.__version__, transformers=transformers.__version__,
         python=platform.python_version(), gpu=torch.cuda.get_device_name(),
         source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),
         setting='preliminary; frozen NQ retrieval of unverified provenance; in-set; bfloat16; eager attention; temperature sampling; top_p=1.0')
-    (output / 'config.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
+    (output / 'config.json').write_text(json.dumps(old if args.resume else metadata, indent=2), encoding='utf-8')
     tokenizer = AutoTokenizer.from_pretrained(args.model, revision=args.revision)
     model = AutoModelForImageTextToText.from_pretrained(args.model, revision=args.revision,
         torch_dtype=torch.bfloat16, attn_implementation='eager').to('cuda').eval()
-    results = []
+    results = list(previous)
+    completed={(r['query_id'],r['condition']) for r in previous}
     started = time.time()
-    with target.open('w', encoding='utf-8') as f:
+    with target.open('a' if args.resume else 'w', encoding='utf-8') as f:
         for row in rows:
             for condition, docs, isolated in [
                 ('clean_carg', row['clean_documents'], False),
                 ('poisoned_carg', row['poisoned_documents'], False),
                 ('poisoned_sdag', row['poisoned_documents'], True)]:
                 if condition not in requested:
+                    continue
+                if (row['query_id'],condition) in completed:
                     continue
                 ids, mask = encode(tokenizer, row['question'], docs, isolated)
                 answer = generate(model, tokenizer, ids, mask, args.max_new_tokens, args.temperature)
