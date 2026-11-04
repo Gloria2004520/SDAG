@@ -51,11 +51,12 @@ config=json.loads((directory/'config.json').read_text(encoding='utf-8'))
 limitations=['Qwen3-VL-8B substitutes for paper Qwen7B','Frozen retrieval provenance unverified','Does not complete requested Tables1,2,3,16']
 retrieval_evidence=None
 source=ROOT/config.get('data','data/m1/in_set_nq_1000_top5.jsonl')
-if source.parent==ROOT/'data/prepared/bm25_grid':
+if source.parent in (ROOT/'data/prepared/bm25_grid',ROOT/'data/prepared/bm25_multiattack'):
     audit_dir=ROOT/'data/provenance/bm25_full_corpus'
     audit_path=audit_dir/'verified_retrieval_report.json'
     audit=json.loads(audit_path.read_text(encoding='utf-8'))
-    grid=json.loads((audit_dir/'grid_preparation_report.json').read_text(encoding='utf-8'))
+    grid_path=(source.parent/'preparation_report.json') if source.parent.name=='bm25_multiattack' else (audit_dir/'grid_preparation_report.json')
+    grid=json.loads(grid_path.read_text(encoding='utf-8'))
     actual_hash=hashlib.sha256(source.read_bytes()).hexdigest()
     assert actual_hash==config['source_sha256']==grid['files'][source.stem]['sha256']
     assert audit['state']=='validated_materialized' and audit['corpus_passages']==21015324

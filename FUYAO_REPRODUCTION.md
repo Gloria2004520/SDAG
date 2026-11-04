@@ -17,6 +17,14 @@ All completed QA outputs retain their provenance; no dense retrieval counter
 counts as an additional QA result. This latest scope supersedes the historical
 100k retrieval plan and original retriever-coverage requirements below.
 
+Nine multi-poison input configurations have now passed an independent assembly
+audit: three datasets with 1,000 questions each, `(n_adv,total_k)` equal to
+`(2,5)`, `(2,10)` and `(3,10)`. They reuse existing BM25 hits and attack pools;
+single-poison completed results are reused. See `data/provenance/bm25_multiattack/`.
+A two-question generation smoke passed verification and the full CARG/SDAG
+batch is running sequentially. Pending outputs and smoke are excluded from the
+24,000 published QA records. Other defense baselines remain incomplete.
+
 **Superseded scope, earlier on 2026-11-04:** The user approved existing-model substitution
 and explicitly selected a fixed shared **100,000-passage** corpus for E5 and
 Contriever, retaining **1,000 questions per dataset**. The generator is the

@@ -1,0 +1,48 @@
+{
+  "state": "verified_multiattack_input_assembly",
+  "configs": {
+    "nq_a2_k5": {
+      "questions": 1000,
+      "sha256": "a3d2b92f6c39430997434620e6b752ee73d91e7ead28aa0cf4d234327534a813"
+    },
+    "nq_a2_k10": {
+      "questions": 1000,
+      "sha256": "95b31697ce218cd2833265186657661f14a5291515a9517ac7779d9e16c67542"
+    },
+    "nq_a3_k10": {
+      "questions": 1000,
+      "sha256": "2229348bb55687ccb46df6476c0c58c3db159d2390e0db4187f44494a7ca5c6c"
+    },
+    "hotpotQA_a2_k5": {
+      "questions": 1000,
+      "sha256": "e16dbcbb0cf02ca06e60e21431fe39008ebbecd4ad03eb827420c74043a0db91"
+    },
+    "hotpotQA_a2_k10": {
+      "questions": 1000,
+      "sha256": "fe5cc45d826b8bb9495bc1f8e4a3d2822b302b2202b240ce09bb6861dc48fe9c"
+    },
+    "hotpotQA_a3_k10": {
+      "questions": 1000,
+      "sha256": "794396d4813b1b5ec86a550234f03d0e90f72380b80282d5749218f8b1b19d29"
+    },
+    "triviaQA_a2_k5": {
+      "questions": 1000,
+      "sha256": "af80a939b8473667821a3f317baa77c5a1808ff8f9d381c3fc84de9b1f7ecc31"
+    },
+    "triviaQA_a2_k10": {
+      "questions": 1000,
+      "sha256": "5815aa1e088085f0e60d3448368af66c525ed007bfe7ceda5745ebf1ad704176"
+    },
+    "triviaQA_a3_k10": {
+      "questions": 1000,
+      "sha256": "ebae8799cd4d3335fc6910fbcec774bd38e5756e07e2479460c89d9baee1a481"
+    }
+  },
+  "configuration_count": 9,
+  "distinct_questions": 3000,
+  "prepared_question_config_pairs": 9000,
+  "new_retrieval": false,
+  "generated_answers": 0,
+  "retrieval_report_sha256": "33bb2963067553b3b0896b48c1afbcb4f0774d7eb92aad6c2c0753cb4550007a",
+  "preparation_report_sha256": "79aa29c7c6422a71c568d8bab4a0bfc6fc716667f9b92d72077dd861ec0c22af"
+}
