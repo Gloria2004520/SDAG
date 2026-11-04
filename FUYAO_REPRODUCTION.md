@@ -1,5 +1,8 @@
 # Fuyao SDAG reproduction status
 
+**当前做了什么、还缺什么，请先看 [实验状态清单](EXPERIMENT_STATUS.md)。**
+下面是历史过程和原始结果说明，不应将重复批次或早期计划当作新增实验覆盖。
+
 Requested scope: paper Tables 1, 2, 3 and 16, including all datasets,
 generators, retrievers and settings in those tables.
 
